@@ -1,11 +1,26 @@
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif
+#include <windows.h>
 #include "collectors/ProcessMonitor.hpp"
+#include <evntrace.h>
 #include <evntcons.h>
 #include <sstream>
 #include <iomanip>
 #include <string>
+
+// Provide definition for SystemTraceControlGuid
+// GUID: {9e814aad-3204-11d2-9a82-006008a86939}
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+const GUID SystemTraceControlGuid =
+    { 0x9e814aad, 0x3204, 0x11d2, { 0x9a, 0x82, 0x00, 0x60, 0x08, 0xa8, 0x69, 0x39 } };
+
+#ifdef __cplusplus
+}
+#endif
 
 // Undefine Windows macros that conflict with our EventType enum
 #ifdef PROCESS_TERMINATE
