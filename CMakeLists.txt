@@ -52,6 +52,7 @@ target_link_libraries(cortex_collectors PUBLIC
     tdh
     ole32
     oleaut32
+    uuid
 )
 
 # Engine library (for future phases)
