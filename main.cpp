@@ -1,3 +1,10 @@
+// Windows header order is critical: winsock2.h must come before windows.h
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
 #include "core/EventBus.hpp"
 #include "core/Logger.hpp"
 #include "core/ThreadPool.hpp"
