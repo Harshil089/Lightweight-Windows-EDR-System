@@ -1,0 +1,104 @@
+# CortexEDR Configuration File
+
+# Logging settings
+logging:
+  level: INFO  # TRACE, DEBUG, INFO, WARN, ERROR, CRITICAL
+  file_path: logs/cortex.log
+  max_file_size: 10485760  # 10 MB in bytes
+  max_files: 5
+
+# Risk scoring thresholds (0-100 scale)
+risk_scoring:
+  thresholds:
+    low: 30
+    medium: 60
+    high: 80
+    critical: 100
+
+  # Individual signal weights
+  weights:
+    process_from_temp_or_appdata: 15
+    process_orphaned: 10
+    unsigned_executable: 20
+    rapid_child_spawning: 15
+    connection_to_external_ip: 10
+    connection_to_suspicious_port: 15
+    registry_persistence_modification: 20
+    write_to_system_directory: 15
+    known_bad_hash: 30
+
+# File monitoring paths
+file_monitoring:
+  watch_paths:
+    - C:\Users
+    - C:\Windows\System32
+    - C:\Windows\Temp
+    - C:\ProgramData
+
+  # Directories to flag as high-risk for file writes
+  sensitive_paths:
+    - C:\Windows\System32
+    - C:\Windows\SysWOW64
+    - C:\Windows\System32\drivers
+    - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
+
+# Network monitoring
+network_monitoring:
+  poll_interval_seconds: 2
+
+  # High-risk ports to flag
+  suspicious_ports:
+    - 4444   # Metasploit default
+    - 1337   # Elite/Leet
+    - 6667   # IRC
+    - 31337  # Back Orifice
+    - 12345  # NetBus
+    - 54321  # Back Orifice 2000
+
+  # Ignore connections to these IP ranges
+  whitelist_ranges:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+    - 127.0.0.0/8
+
+# Registry monitoring keys
+registry_monitoring:
+  monitored_keys:
+    - SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    - SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+    - SYSTEM\CurrentControlSet\Services
+
+# Process monitoring
+process_monitoring:
+  # Enable ETW-based monitoring (requires admin)
+  use_etw: true
+
+  # Fallback to WMI if ETW unavailable
+  fallback_to_wmi: true
+
+# Response actions
+response:
+  # Enable automatic containment
+  auto_contain: true
+
+  # Require confirmation for destructive actions
+  require_confirmation: true
+
+  # Quarantine directory
+  quarantine_path: C:\ProgramData\CortexEDR\quarantine
+
+# Telemetry export
+telemetry:
+  enabled: true
+  export_path: telemetry/events.ndjson
+
+  # Enable named pipe for external consumption
+  enable_named_pipe: false
+  named_pipe_name: \\.\pipe\CortexEDR
+
+# Dashboard settings
+dashboard:
+  refresh_interval_seconds: 2
+  max_recent_alerts: 10
+  max_displayed_processes: 20
