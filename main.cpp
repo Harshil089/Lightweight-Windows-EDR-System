@@ -1,9 +1,14 @@
 // Windows header order is critical: winsock2.h must come before windows.h
+#ifdef _WIN32
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif
 #include <winsock2.h>
 #include <ws2tcpip.h>
+// Include Windows and Concurrency Runtime headers before standard library to avoid PPL errors
+#include <windows.h>
+#include <concrt.h>
+#endif
 
 #include "core/EventBus.hpp"
 #include "core/Logger.hpp"

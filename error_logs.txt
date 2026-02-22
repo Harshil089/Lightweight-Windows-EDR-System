@@ -5,528 +5,1523 @@ Building Release configuration...
 MSBuild version 17.14.40+3e7442088 for .NET Framework
 
   cortex_core.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_core.lib
-  ProcessMonitor.cpp
   cortex_collectors.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_collectors.lib
   cortex_engine.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_engine.lib
-  Building Custom Rule C:/Lightweight-Windows-EDR-System/CMakeLists.txt
   main.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(246,16): error C2011: 'sockaddr': 'struct'
-type redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(482,8):
-      see declaration of 'sockaddr'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(448,5): error C2143: syntax error: missing
-'}' before 'constant' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(14,5): error C2143: syntax error: missing '}' before '(' [C:\Lightw
+eight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(448,5): error C2059: syntax error: 'constan
-t' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(14,5): error C2059: syntax error: 'constant' [C:\Lightweight-Window
+s-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(502,1): error C2143: syntax error: missing
-';' before '}' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(24,1): error C2143: syntax error: missing ';' before '}' [C:\Lightw
+eight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(644,16): error C2011: 'sockaddr_in': 'struc
-t' type redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(27,15): error C3646: 'type': unknown override specifier [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(309,8):
-      see declaration of 'sockaddr_in'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(136,16): error C2011: 'fd_set': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(27,5): error C4430: missing type specifier - int assumed. Note: C++
+ does not support default-int [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(65,16):
-      see declaration of 'fd_set'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(180,8): error C2011: 'timeval': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(33,11): error C2061: syntax error: identifier 'EventType' [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(108,8):
-      see declaration of 'timeval'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(236,9): error C2011: 'hostent': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,16): error C2065: 't': undeclared identifier [C:\Lightweight-Win
+dows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(164,9):
-      see declaration of 'hostent'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(249,9): error C2011: 'netent': 'struct' type
-redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,58): error C2065: 'p': undeclared identifier [C:\Lightweight-Win
+dows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(177,9):
-      see declaration of 'netent'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(256,9): error C2011: 'servent': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,75): error C2065: 'name': undeclared identifier [C:\Lightweight-
+Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(184,9):
-      see declaration of 'servent'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(268,9): error C2011: 'protoent': 'struct' typ
-e redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,11): error C2614: 'Event': illegal member initialization: 'type'
+ is not a base or member [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(196,9):
-      see declaration of 'protoent'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(364,16): error C2011: 'WSAData': 'struct' typ
-e redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(50,30): error C2061: syntax error: identifier 'EventType' [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(319,16):
-      see declaration of 'WSAData'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(462,8): error C2011: 'sockproto': 'struct' ty
-pe redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(55,31): error C2061: syntax error: identifier 'EventType' [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(491,8):
-      see declaration of 'sockproto'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(504,9): error C2011: 'linger': 'struct' type
-redefinition [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,24): error C2065: 'EventType': undeclared identifier [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(528,9):
-      see declaration of 'linger'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1633,1): error C2375: 'accept': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,10): error C2923: 'std::unordered_map': 'EventType' is not a val
+id template type argument for parameter '_Kty' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(739,19):
-      see declaration of 'accept'
+      C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,24):
+      see declaration of 'EventType'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1655,1): error C2375: 'bind': redefinition; d
-ifferent linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,10): error C2976: 'std::unordered_map': too few template argumen
+ts [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(744,16):
-      see declaration of 'bind'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\unordered_map(61
+  ,7):
+      see declaration of 'std::unordered_map'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1676,1): error C2375: 'closesocket': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,89): error C2955: 'std::unordered_map': use of class template re
+quires template argument list [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(749,16):
-      see declaration of 'closesocket'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\unordered_map(61
+  ,7):
+      see declaration of 'std::unordered_map'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1693,1): error C2375: 'connect': redefinition
-; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(66,1): error C2059: syntax error: '}' [C:\Lightweight-Windows-EDR-S
+ystem\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(751,16):
-      see declaration of 'connect'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1714,1): error C2375: 'ioctlsocket': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(66,1): error C2143: syntax error: missing ';' before '}' [C:\Lightw
+eight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(756,16):
-      see declaration of 'ioctlsocket'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1737,1): error C2375: 'getpeername': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\details\null_mutex.h(10,18): error C2143: syntax error: missing ';' befor
+e '{' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(761,16):
-      see declaration of 'getpeername'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1758,1): error C2375: 'getsockname': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\details\null_mutex.h(10,18): error C2447: '{': missing function header (o
+ld-style formal list?) [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(766,16):
-      see declaration of 'getsockname'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1779,1): error C2375: 'getsockopt': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,59): error C2039: 'null_mutex': is not a me
+mber of 'spdlog::details' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(771,16):
-      see declaration of 'getsockopt'
+      C:\vcpkg\installed\x64-windows\include\spdlog\details\file_helper.h(10,11):
+      see declaration of 'spdlog::details'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1804,1): error C2375: 'htonl': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,59): error C2065: 'null_mutex': undeclared
+identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(778,19):
-      see declaration of 'htonl'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1821,1): error C2375: 'htons': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,31): error C2923: 'spdlog::sinks::rotating_
+file_sink': 'null_mutex' is not a valid template type argument for parameter 'Mutex' [C:\Lightweight-Windows-EDR-System
+\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(780,20):
-      see declaration of 'htons'
+      C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,59):
+      see declaration of 'null_mutex'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1839,1): error C2375: 'inet_addr': redefiniti
-on; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\details\console_globals.h(21,21): error C2061: syntax error: identifier '
+null_mutex' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(782,26):
-      see declaration of 'inet_addr'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1857,1): error C2375: 'inet_ntoa': redefiniti
-on; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\details\console_globals.h(22,20): error C2143: syntax error: missing ';'
+before '&' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(784,23):
-      see declaration of 'inet_ntoa'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1957,1): error C2375: 'listen': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\vcpkg\installed\x64-windows\include\spdlog\details\console_globals.h(22,29): error C2334: unexpected token(s) preced
+ing '{'; skipping apparent function body [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(786,16):
-      see declaration of 'listen'
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1976,1): error C2375: 'ntohl': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(790,19):
-      see declaration of 'ntohl'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1993,1): error C2375: 'ntohs': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(792,20):
-      see declaration of 'ntohs'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2010,1): error C2375: 'recv': redefinition; d
-ifferent linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(794,16):
-      see declaration of 'recv'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2033,1): error C2375: 'recvfrom': redefinitio
-n; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(800,16):
-      see declaration of 'recvfrom'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2060,1): error C2375: 'select': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(808,16):
-      see declaration of 'select'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2085,1): error C2375: 'send': redefinition; d
-ifferent linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(815,16):
-      see declaration of 'send'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2108,1): error C2375: 'sendto': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(821,16):
-      see declaration of 'sendto'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2135,1): error C2375: 'setsockopt': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(829,16):
-      see declaration of 'setsockopt'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2160,1): error C2375: 'shutdown': redefinitio
-n; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(836,16):
-      see declaration of 'shutdown'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2180,1): error C2375: 'socket': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(840,19):
-      see declaration of 'socket'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2205,1): error C2375: 'gethostbyaddr': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(847,33):
-      see declaration of 'gethostbyaddr'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2227,1): error C2375: 'gethostbyname': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(852,33):
-      see declaration of 'gethostbyname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2244,1): error C2375: 'gethostname': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(854,16):
-      see declaration of 'gethostname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2284,1): error C2375: 'getservbyport': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(858,33):
-      see declaration of 'getservbyport'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2303,1): error C2375: 'getservbyname': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(862,33):
-      see declaration of 'getservbyname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2322,1): error C2375: 'getprotobynumber': red
-efinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(866,34):
-      see declaration of 'getprotobynumber'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2339,1): error C2375: 'getprotobyname': redef
-inition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(868,34):
-      see declaration of 'getprotobyname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2359,1): error C2375: 'WSAStartup': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(872,16):
-      see declaration of 'WSAStartup'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2379,1): error C2375: 'WSACleanup': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(876,16):
-      see declaration of 'WSACleanup'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2396,1): error C2375: 'WSASetLastError': rede
-finition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(878,17):
-      see declaration of 'WSASetLastError'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2413,1): error C2375: 'WSAGetLastError': rede
-finition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(880,16):
-      see declaration of 'WSAGetLastError'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2434,1): error C2375: 'WSAIsBlocking': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(882,17):
-      see declaration of 'WSAIsBlocking'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2452,1): error C2375: 'WSAUnhookBlockingHook'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(884,16):
-      see declaration of 'WSAUnhookBlockingHook'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2470,1): error C2375: 'WSASetBlockingHook': r
-edefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(886,20):
-      see declaration of 'WSASetBlockingHook'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2488,1): error C2375: 'WSACancelBlockingCall'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(888,16):
-      see declaration of 'WSACancelBlockingCall'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2506,1): error C2375: 'WSAAsyncGetServByName'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(890,19):
-      see declaration of 'WSAAsyncGetServByName'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2534,1): error C2375: 'WSAAsyncGetServByPort'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(898,19):
-      see declaration of 'WSAAsyncGetServByPort'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2562,1): error C2375: 'WSAAsyncGetProtoByName
-': redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(906,19):
-      see declaration of 'WSAAsyncGetProtoByName'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2588,1): error C2375: 'WSAAsyncGetProtoByNumb
-er': redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(913,19):
-      see declaration of 'WSAAsyncGetProtoByNumber'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2614,1): error C2375: 'WSAAsyncGetHostByName'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(920,19):
-      see declaration of 'WSAAsyncGetHostByName'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2640,1): error C2375: 'WSAAsyncGetHostByAddr'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(927,19):
-      see declaration of 'WSAAsyncGetHostByAddr'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2670,1): error C2375: 'WSACancelAsyncRequest'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(936,16):
-      see declaration of 'WSACancelAsyncRequest'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2688,1): error C2375: 'WSAAsyncSelect': redef
-inition; different linkage [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(938,16):
-      see declaration of 'WSAAsyncSelect'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(4320,1): error C2059: syntax error: '}' [C:\L
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(17,5): error C2143: syntax error: missing '}' before 'constant' [C:\L
 ightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(4320,1): error C2143: syntax error: missing '
-;' before '}' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(17,5): error C2059: syntax error: 'constant' [C:\Lightweight-Windows-
+EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2ipdef.h(42,12): error C2143: syntax error: missin
-g ';' before '{' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(19,1): error C2143: syntax error: missing ';' before '}' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2ipdef.h(42,12): error C2447: '{': missing functio
-n header (old-style formal list?) [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(27,26): error C2061: syntax error: identifier 'LogLevel' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(733,10): error C2061: syntax error: identifie
-r 'MULTICAST_MODE_TYPE' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(74,1): error C2059: syntax error: '}' [C:\Lightweight-Windows-EDR-Sys
+tem\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(740,5): error C2065: 'PIP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(74,1): error C2143: syntax error: missing ';' before '}' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(740,18): error C2146: syntax error: missing '
-;' before identifier 'Filter' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplinterface.h(33,14):
+ error C2143: syntax error: missing ';' before '{' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(740,18): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplinterface.h(33,14):
+ error C2447: '{': missing function header (old-style formal list?) [C:\Lightweight-Windows-EDR-System\build\CortexEDR.
+vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(742,9): error C2065: 'SourceCount': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(44,47): error
+ C2504: 'scheduler_interface': base class undefined [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(743,40): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(51,20): error
+ C3646: '_M_proc': unknown override specifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(743,60): error C2065: 'SourceList': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(51,9): error
+C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Lightweight-Windows-EDR-System\
+build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(748,12): error C2065: 'IP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,23): error
+ C2061: syntax error: identifier 'TaskProc_t' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(748,12): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(83,28): error
+ C2061: syntax error: identifier 'TaskProc_t' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(749,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(83,18): error
+ C3668: 'Concurrency::details::_DefaultPPLTaskScheduler::schedule': method with override specifier 'override' did not o
+verride any base class methods [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(749,15): error C2065: 'PIP_MSFILTER': undecla
-red identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(57,21): error
+ C2039: '_M_proc': is not a member of 'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore' [C:\Lightweight-W
+indows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(48,11):
+      see declaration of 'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,93): error
+ C2065: '_Proc': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(749,29): error C2146: syntax error: missing '
-;' before identifier 'HeapAlloc' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,110): erro
+r C2065: '_Param': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(750,9): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,85): error
+ C2614: 'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore': illegal member initialization: '_M_proc' is no
+t a base or member [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(755,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,29): error
+ C2065: '_Proc': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(756,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,36): error
+ C2065: '_Param': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(757,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,27): error
+ C2440: 'initializing': cannot convert from 'initializer list' to 'Concurrency::details::_DefaultPPLTaskScheduler::_PPL
+TaskChore' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,27):
+      'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore::_PPLTaskChore': function does not take 2 argument
+  s
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,
+  27):
+          while trying to match the argument list '(<error type>, <error type>)'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,26): error
+ C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(757,26): error C2065: 'FilterMode': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,15): error
+ C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,26):
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,49): error
+ C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bui
+ld\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,30): error
+ C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(758,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,19): error
+ C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,30):
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2641: cannot deduce template arguments for 'std::shared_ptr' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxpr
+oj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(758,27): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::weak_ptr<_Ty>)': expects 1 arguments - 0 provided [C:\Lightweight-Wi
+ndows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1873,1):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::unique_ptr<_Ty,_Dx>)': expects 1 arguments - 0 provided [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1876,1):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::unique_ptr<_Ux,_Dx> &&)': expects 1 arguments - 0 provided [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1673,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::weak_ptr<_Uty> &)': expects 1 arguments - 0 provided [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1654,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty0> &&) noexcept': expects 1 arguments - 0 provided [C:
+\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1649,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty> &&) noexcept': expects 1 arguments - 0 provided [C:\
+Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1644,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::shared_ptr<_Ty0> &) noexcept': expects 1 arguments - 0 provide
+d [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1639,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::shared_ptr<_Ty> &) noexcept': expects 1 arguments - 0 provided
+ [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1634,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty0> &&,remove_extent<_Ty>::type *) noexcept': expects 2
+ arguments - 0 provided [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1629,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::shared_ptr<_Ty0> &,remove_extent<_Ty>::type *) noexcept': expe
+cts 2 arguments - 0 provided [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1623,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::nullptr_t,_Dx,_Alloc)': expects 3 arguments - 0 provided [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1618,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::nullptr_t,_Dx)': expects 2 arguments - 0 provided [C:\Lightweight-Wi
+ndows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1612,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(_Ux *,_Dx,_Alloc)': expects 3 arguments - 0 provided [C:\Lightweight-Wind
+ows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1606,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(_Ux *,_Dx)': expects 2 arguments - 0 provided [C:\Lightweight-Windows-EDR
+-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1598,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(_Ux *)': expects 1 arguments - 0 provided [C:\Lightweight-Windows-EDR-Sys
+tem\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1584,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::nullptr_t) noexcept': expects 1 arguments - 0 provided [C:\Lightweig
+ht-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1578,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2783: 'std::shared_ptr<_Ty> std::shared_ptr(void) noexcept': could not deduce template argument for '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1576,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty>)': expects 1 arguments - 0 provided [C:\Lightweight-
+Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,26): error
+ C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(759,9): error C2065: 'SourceCount': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,15): error
+ C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,26):
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,49): error
+ C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bui
+ld\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,30): erro
+r C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,19): erro
+r C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,30)
+  :
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,53): erro
+r C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bu
+ild\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,32): erro
+r C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2065: 'SourceList': undeclared
- identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,21): erro
+r C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,32)
+  :
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,54): erro
+r C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bu
+ild\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,59): erro
+r C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2065: 'SourceCount': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,48): erro
+r C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,59)
+  :
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,81): erro
+r C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bu
+ild\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116,43): erro
+r C2678: binary '=': no operator found which takes a left-hand operand of type 'std::shared_ptr' (or there is no accept
+able conversion) [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1704,17):
+      could be 'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty> &&) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty> &&) noexcept': cannot convert 't
+  his' pointer from 'std::shared_ptr' to 'std::shared_ptr<_Ty> &'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Reason: cannot convert from 'std::shared_ptr' to 'std::shared_ptr<_Ty>'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1693,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty> &) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty> &) noexcept': cannot conve
+  rt 'this' pointer from 'std::shared_ptr' to 'std::shared_ptr<_Ty> &'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Reason: cannot convert from 'std::shared_ptr' to 'std::shared_ptr<_Ty>'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1727,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::unique_ptr<_Ux,_Dx> &&)'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::unique_ptr<_Ux,_Dx> &&)': could not deduce templ
+  ate argument for 'std::unique_ptr<_Ux,_Dx> &&' from 'const std::shared_ptr'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1710,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty2> &&) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty2> &&) noexcept': could not deduce
+   template argument for 'std::shared_ptr<_Ty2> &&' from 'const std::shared_ptr'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1699,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty2> &) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty2> &) noexcept': could not d
+  educe template argument for 'const std::shared_ptr<_Ty2> &' from 'const std::shared_ptr'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116,43)
+  :
+      while trying to match the argument list '(std::shared_ptr, const std::shared_ptr)'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116,43): erro
+r C1003: error count exceeds 100; stopping compilation [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2660: 'memcpy': function does
-not take 2 arguments [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
-  (compiling source file '../main.cpp')
-      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_string
-  .h(43,15):
-      see declaration of 'memcpy'
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9):
-      while trying to match the argument list '()'
+  cortex_tests.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_tests.exe
+ERROR: Build failed
+PS C:\Lightweight-Windows-EDR-System> .\build.bat
+========================================
+CortexEDR Build Script
+========================================
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(764,47): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+Using vcpkg from: C:\vcpkg
+
+Configuring CMake...
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+-- Configuring done (0.1s)
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:75 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:64 (target_link_libraries):
+  The library that is being linked to, yaml-cpp, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target yaml-cpp is deprecated and will be removed in version 0.10.0.
+  Use the yaml-cpp::yaml-cpp target instead.
+
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Lightweight-Windows-EDR-System/build
+
+Building Release configuration...
+MSBuild version 17.14.40+3e7442088 for .NET Framework
+
+  cortex_core.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_core.lib
+  cortex_collectors.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_collectors.lib
+  cortex_engine.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_engine.lib
+  main.cpp
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(14,5): error C2143: syntax error: missing '}' before '(' [C:\Lightw
+eight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(767,35): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(14,5): error C2059: syntax error: 'constant' [C:\Lightweight-Window
+s-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(779,11): error C2061: syntax error: identifie
-r 'MULTICAST_MODE_TYPE' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(24,1): error C2143: syntax error: missing ';' before '}' [C:\Lightw
+eight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(786,5): error C2065: 'PIP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(27,15): error C3646: 'type': unknown override specifier [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(786,18): error C2146: syntax error: missing '
-;' before identifier 'Filter' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(27,5): error C4430: missing type specifier - int assumed. Note: C++
+ does not support default-int [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(786,18): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(33,11): error C2061: syntax error: identifier 'EventType' [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(788,10): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,16): error C2065: 't': undeclared identifier [C:\Lightweight-Win
+dows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(789,40): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,58): error C2065: 'p': undeclared identifier [C:\Lightweight-Win
+dows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(789,60): error C2065: 'SourceList': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,75): error C2065: 'name': undeclared identifier [C:\Lightweight-
+Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(794,12): error C2065: 'IP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(34,11): error C2614: 'Event': illegal member initialization: 'type'
+ is not a base or member [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(794,12): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(50,30): error C2061: syntax error: identifier 'EventType' [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(794,12): error C1003: error count exceeds 100
-; stopping compilation [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(55,31): error C2061: syntax error: identifier 'EventType' [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,24): error C2065: 'EventType': undeclared identifier [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,10): error C2923: 'std::unordered_map': 'EventType' is not a val
+id template type argument for parameter '_Kty' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,24):
+      see declaration of 'EventType'
+
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,10): error C2976: 'std::unordered_map': too few template argumen
+ts [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\unordered_map(61
+  ,7):
+      see declaration of 'std::unordered_map'
+
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(62,89): error C2955: 'std::unordered_map': use of class template re
+quires template argument list [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\unordered_map(61
+  ,7):
+      see declaration of 'std::unordered_map'
+
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(66,1): error C2059: syntax error: '}' [C:\Lightweight-Windows-EDR-S
+ystem\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\EventBus.hpp(66,1): error C2143: syntax error: missing ';' before '}' [C:\Lightw
+eight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\vcpkg\installed\x64-windows\include\spdlog\details\null_mutex.h(10,18): error C2143: syntax error: missing ';' befor
+e '{' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\vcpkg\installed\x64-windows\include\spdlog\details\null_mutex.h(10,18): error C2447: '{': missing function header (o
+ld-style formal list?) [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,59): error C2039: 'null_mutex': is not a me
+mber of 'spdlog::details' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\vcpkg\installed\x64-windows\include\spdlog\details\file_helper.h(10,11):
+      see declaration of 'spdlog::details'
+
+C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,59): error C2065: 'null_mutex': undeclared
+identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,31): error C2923: 'spdlog::sinks::rotating_
+file_sink': 'null_mutex' is not a valid template type argument for parameter 'Mutex' [C:\Lightweight-Windows-EDR-System
+\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\vcpkg\installed\x64-windows\include\spdlog\sinks\rotating_file_sink.h(61,59):
+      see declaration of 'null_mutex'
+
+C:\vcpkg\installed\x64-windows\include\spdlog\details\console_globals.h(21,21): error C2061: syntax error: identifier '
+null_mutex' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\vcpkg\installed\x64-windows\include\spdlog\details\console_globals.h(22,20): error C2143: syntax error: missing ';'
+before '&' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\vcpkg\installed\x64-windows\include\spdlog\details\console_globals.h(22,29): error C2334: unexpected token(s) preced
+ing '{'; skipping apparent function body [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(17,5): error C2143: syntax error: missing '}' before 'constant' [C:\L
+ightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(17,5): error C2059: syntax error: 'constant' [C:\Lightweight-Windows-
+EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(19,1): error C2143: syntax error: missing ';' before '}' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(27,26): error C2061: syntax error: identifier 'LogLevel' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(74,1): error C2059: syntax error: '}' [C:\Lightweight-Windows-EDR-Sys
+tem\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Lightweight-Windows-EDR-System\core\Logger.hpp(74,1): error C2143: syntax error: missing ';' before '}' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplinterface.h(33,14):
+ error C2143: syntax error: missing ';' before '{' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplinterface.h(33,14):
+ error C2447: '{': missing function header (old-style formal list?) [C:\Lightweight-Windows-EDR-System\build\CortexEDR.
+vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(44,47): error
+ C2504: 'scheduler_interface': base class undefined [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(51,20): error
+ C3646: '_M_proc': unknown override specifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(51,9): error
+C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Lightweight-Windows-EDR-System\
+build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,23): error
+ C2061: syntax error: identifier 'TaskProc_t' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(83,28): error
+ C2061: syntax error: identifier 'TaskProc_t' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(83,18): error
+ C3668: 'Concurrency::details::_DefaultPPLTaskScheduler::schedule': method with override specifier 'override' did not o
+verride any base class methods [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(57,21): error
+ C2039: '_M_proc': is not a member of 'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore' [C:\Lightweight-W
+indows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(48,11):
+      see declaration of 'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,93): error
+ C2065: '_Proc': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,110): erro
+r C2065: '_Param': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(68,85): error
+ C2614: 'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore': illegal member initialization: '_M_proc' is no
+t a base or member [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,29): error
+ C2065: '_Proc': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,36): error
+ C2065: '_Param': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,27): error
+ C2440: 'initializing': cannot convert from 'initializer list' to 'Concurrency::details::_DefaultPPLTaskScheduler::_PPL
+TaskChore' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,27):
+      'Concurrency::details::_DefaultPPLTaskScheduler::_PPLTaskChore::_PPLTaskChore': function does not take 2 argument
+  s
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(85,
+  27):
+          while trying to match the argument list '(<error type>, <error type>)'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,26): error
+ C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,15): error
+ C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,26):
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(89,49): error
+ C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bui
+ld\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,30): error
+ C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,19): error
+ C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,30):
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2641: cannot deduce template arguments for 'std::shared_ptr' [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxpr
+oj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::weak_ptr<_Ty>)': expects 1 arguments - 0 provided [C:\Lightweight-Wi
+ndows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1873,1):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::unique_ptr<_Ty,_Dx>)': expects 1 arguments - 0 provided [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1876,1):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::unique_ptr<_Ux,_Dx> &&)': expects 1 arguments - 0 provided [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1673,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::weak_ptr<_Uty> &)': expects 1 arguments - 0 provided [C:\Light
+weight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1654,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty0> &&) noexcept': expects 1 arguments - 0 provided [C:
+\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1649,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty> &&) noexcept': expects 1 arguments - 0 provided [C:\
+Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1644,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::shared_ptr<_Ty0> &) noexcept': expects 1 arguments - 0 provide
+d [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1639,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::shared_ptr<_Ty> &) noexcept': expects 1 arguments - 0 provided
+ [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1634,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty0> &&,remove_extent<_Ty>::type *) noexcept': expects 2
+ arguments - 0 provided [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1629,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(const std::shared_ptr<_Ty0> &,remove_extent<_Ty>::type *) noexcept': expe
+cts 2 arguments - 0 provided [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1623,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::nullptr_t,_Dx,_Alloc)': expects 3 arguments - 0 provided [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1618,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::nullptr_t,_Dx)': expects 2 arguments - 0 provided [C:\Lightweight-Wi
+ndows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1612,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(_Ux *,_Dx,_Alloc)': expects 3 arguments - 0 provided [C:\Lightweight-Wind
+ows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1606,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(_Ux *,_Dx)': expects 2 arguments - 0 provided [C:\Lightweight-Windows-EDR
+-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1598,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(_Ux *)': expects 1 arguments - 0 provided [C:\Lightweight-Windows-EDR-Sys
+tem\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1584,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::nullptr_t) noexcept': expects 1 arguments - 0 provided [C:\Lightweig
+ht-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1578,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2783: 'std::shared_ptr<_Ty> std::shared_ptr(void) noexcept': could not deduce template argument for '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1576,5):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(93,51): error
+ C2780: 'std::shared_ptr<_Ty> std::shared_ptr(std::shared_ptr<_Ty>)': expects 1 arguments - 0 provided [C:\Lightweight-
+Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,26): error
+ C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,15): error
+ C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwei
+ght-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,26):
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(97,49): error
+ C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bui
+ld\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,30): erro
+r C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,19): erro
+r C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,30)
+  :
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(100,53): erro
+r C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bu
+ild\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,32): erro
+r C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,21): erro
+r C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,32)
+  :
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(109,54): erro
+r C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bu
+ild\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,59): erro
+r C2065: 'scheduler_interface': undeclared identifier [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,48): erro
+r C2923: 'std::shared_ptr': 'scheduler_interface' is not a valid template type argument for parameter '_Ty' [C:\Lightwe
+ight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,59)
+  :
+      see declaration of 'scheduler_interface'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(114,81): erro
+r C2955: 'std::shared_ptr': use of class template requires template argument list [C:\Lightweight-Windows-EDR-System\bu
+ild\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      see declaration of 'std::shared_ptr'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116,43): erro
+r C2678: binary '=': no operator found which takes a left-hand operand of type 'std::shared_ptr' (or there is no accept
+able conversion) [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
+  (compiling source file '../main.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1704,17):
+      could be 'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty> &&) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty> &&) noexcept': cannot convert 't
+  his' pointer from 'std::shared_ptr' to 'std::shared_ptr<_Ty> &'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Reason: cannot convert from 'std::shared_ptr' to 'std::shared_ptr<_Ty>'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1693,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty> &) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty> &) noexcept': cannot conve
+  rt 'this' pointer from 'std::shared_ptr' to 'std::shared_ptr<_Ty> &'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Reason: cannot convert from 'std::shared_ptr' to 'std::shared_ptr<_Ty>'
+              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h
+  (116,43):
+              Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1727,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::unique_ptr<_Ux,_Dx> &&)'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::unique_ptr<_Ux,_Dx> &&)': could not deduce templ
+  ate argument for 'std::unique_ptr<_Ux,_Dx> &&' from 'const std::shared_ptr'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1710,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty2> &&) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(std::shared_ptr<_Ty2> &&) noexcept': could not deduce
+   template argument for 'std::shared_ptr<_Ty2> &&' from 'const std::shared_ptr'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(1699,17):
+      or       'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty2> &) noexcept'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116
+  ,43):
+          'std::shared_ptr<_Ty> &std::shared_ptr<_Ty>::operator =(const std::shared_ptr<_Ty2> &) noexcept': could not d
+  educe template argument for 'const std::shared_ptr<_Ty2> &' from 'const std::shared_ptr'
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116,43)
+  :
+      while trying to match the argument list '(std::shared_ptr, const std::shared_ptr)'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pplwin.h(116,43): erro
+r C1003: error count exceeds 100; stopping compilation [C:\Lightweight-Windows-EDR-System\build\CortexEDR.vcxproj]
   (compiling source file '../main.cpp')
 
   cortex_tests.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_tests.exe
