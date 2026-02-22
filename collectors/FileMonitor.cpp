@@ -1,6 +1,15 @@
 #include "collectors/FileMonitor.hpp"
-#include <locale>
-#include <codecvt>
+
+namespace {
+// Helper function to convert wide string to UTF-8
+std::string WideToUtf8(const std::wstring& wstr) {
+    if (wstr.empty()) return std::string();
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), nullptr, 0, nullptr, nullptr);
+    std::string result(size_needed, 0);
+    WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), &result[0], size_needed, nullptr, nullptr);
+    return result;
+}
+} // anonymous namespace
 
 namespace cortex {
 
@@ -67,8 +76,7 @@ void FileMonitor::Stop() {
 }
 
 void FileMonitor::MonitorDirectory(const std::wstring& path) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    LOG_INFO("Monitoring directory: {}", converter.to_bytes(path));
+    LOG_INFO("Monitoring directory: {}", WideToUtf8(path));
 
     HANDLE dir_handle = CreateFileW(
         path.c_str(),
@@ -81,7 +89,7 @@ void FileMonitor::MonitorDirectory(const std::wstring& path) {
     );
 
     if (dir_handle == INVALID_HANDLE_VALUE) {
-        LOG_ERROR("Failed to open directory {}: {}", converter.to_bytes(path), GetLastError());
+        LOG_ERROR("Failed to open directory {}: {}", WideToUtf8(path), GetLastError());
         return;
     }
 
@@ -170,8 +178,7 @@ void FileMonitor::ProcessFileChange(WatchContext* context, DWORD bytes_transferr
 }
 
 void FileMonitor::PublishFileEvent(const FileChange& change) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    std::string file_path_str = converter.to_bytes(change.file_path);
+    std::string file_path_str = WideToUtf8(change.file_path);
 
     EventType event_type;
     std::string action_str;

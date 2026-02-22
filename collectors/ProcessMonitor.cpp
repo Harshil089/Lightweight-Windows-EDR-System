@@ -1,9 +1,22 @@
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
 #include "collectors/ProcessMonitor.hpp"
 #include <evntcons.h>
 #include <sstream>
 #include <iomanip>
-#include <locale>
-#include <codecvt>
+#include <string>
+
+namespace {
+// Helper function to convert wide string to UTF-8
+std::string WideToUtf8(const std::wstring& wstr) {
+    if (wstr.empty()) return std::string();
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), nullptr, 0, nullptr, nullptr);
+    std::string result(size_needed, 0);
+    WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), &result[0], size_needed, nullptr, nullptr);
+    return result;
+}
+} // anonymous namespace
 
 namespace cortex {
 
@@ -56,7 +69,7 @@ bool ProcessMonitor::Start() {
 
     LOG_INFO("Starting ProcessMonitor with ETW");
 
-    if (!EnablePrivilege(SE_DEBUG_NAME)) {
+    if (!EnablePrivilege(L"SeDebugPrivilege")) {
         LOG_WARN("Failed to enable SeDebugPrivilege, some monitoring may be limited");
     }
 
@@ -135,7 +148,7 @@ void ProcessMonitor::MonitorThread() {
     EVENT_TRACE_LOGFILEW trace = {0};
     trace.LoggerName = const_cast<LPWSTR>(SESSION_NAME);
     trace.ProcessTraceMode = PROCESS_TRACE_MODE_REAL_TIME | PROCESS_TRACE_MODE_EVENT_RECORD;
-    trace.EventRecordCallback = ProcessTraceCallback;
+    trace.EventRecordCallback = (PEVENT_RECORD_CALLBACK)ProcessTraceCallback;
 
     trace_handle_ = OpenTraceW(&trace);
     if (trace_handle_ == INVALID_PROCESSTRACE_HANDLE) {
@@ -201,8 +214,7 @@ void ProcessMonitor::HandleProcessEvent(PEVENT_RECORD event_record) {
 }
 
 void ProcessMonitor::PublishProcessEvent(const ProcessEvent& proc_event) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    std::string image_path_str = converter.to_bytes(proc_event.image_path);
+    std::string image_path_str = WideToUtf8(proc_event.image_path);
 
     std::string process_name = image_path_str;
     size_t last_slash = process_name.find_last_of("\\/");
@@ -219,7 +231,7 @@ void ProcessMonitor::PublishProcessEvent(const ProcessEvent& proc_event) {
     event.metadata["image_path"] = image_path_str;
     event.metadata["parent_pid"] = std::to_string(proc_event.parent_pid);
     event.metadata["session_id"] = std::to_string(proc_event.session_id);
-    event.metadata["command_line"] = converter.to_bytes(proc_event.command_line);
+    event.metadata["command_line"] = WideToUtf8(proc_event.command_line);
 
     EventBus::Instance().Publish(event);
 

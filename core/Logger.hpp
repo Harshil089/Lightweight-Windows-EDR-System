@@ -3,6 +3,7 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/rotating_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
+#include <fmt/format.h>
 #include <memory>
 #include <string>
 
@@ -29,32 +30,32 @@ public:
     static std::shared_ptr<spdlog::logger> Get();
 
     template<typename... Args>
-    static void Trace(spdlog::string_view_t fmt, Args&&... args) {
+    static void Trace(fmt::format_string<Args...> fmt, Args&&... args) {
         Get()->trace(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Debug(spdlog::string_view_t fmt, Args&&... args) {
+    static void Debug(fmt::format_string<Args...> fmt, Args&&... args) {
         Get()->debug(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Info(spdlog::string_view_t fmt, Args&&... args) {
+    static void Info(fmt::format_string<Args...> fmt, Args&&... args) {
         Get()->info(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Warn(spdlog::string_view_t fmt, Args&&... args) {
+    static void Warn(fmt::format_string<Args...> fmt, Args&&... args) {
         Get()->warn(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Error(spdlog::string_view_t fmt, Args&&... args) {
+    static void Error(fmt::format_string<Args...> fmt, Args&&... args) {
         Get()->error(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Critical(spdlog::string_view_t fmt, Args&&... args) {
+    static void Critical(fmt::format_string<Args...> fmt, Args&&... args) {
         Get()->critical(fmt, std::forward<Args>(args)...);
     }
 
