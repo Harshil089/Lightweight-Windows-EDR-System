@@ -1,8 +1,16 @@
 #include "collectors/RegistryMonitor.hpp"
-#include <locale>
-#include <codecvt>
 
 namespace cortex {
+
+// Helper function to convert wide string to UTF-8
+static std::string WideToUtf8(const std::wstring& wstr) {
+    if (wstr.empty()) return std::string();
+
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), nullptr, 0, nullptr, nullptr);
+    std::string str(size_needed, 0);
+    WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.size(), &str[0], size_needed, nullptr, nullptr);
+    return str;
+}
 
 constexpr const wchar_t* RegistryMonitor::MONITORED_KEYS[];
 
@@ -58,9 +66,8 @@ bool RegistryMonitor::Start() {
             );
 
             if (result != ERROR_SUCCESS) {
-                std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
                 LOG_WARN("Failed to open registry key {}: {}",
-                        converter.to_bytes(context->full_path), result);
+                        WideToUtf8(context->full_path), result);
                 CloseHandle(context->event_handle);
                 continue;
             }
@@ -117,8 +124,7 @@ void RegistryMonitor::Stop() {
 }
 
 void RegistryMonitor::MonitorRegistryKey(WatchContext* context) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    LOG_INFO("Monitoring registry key: {}", converter.to_bytes(context->full_path));
+    LOG_INFO("Monitoring registry key: {}", WideToUtf8(context->full_path));
 
     while (!stop_requested_) {
         LONG result = RegNotifyChangeKeyValue(
@@ -131,7 +137,7 @@ void RegistryMonitor::MonitorRegistryKey(WatchContext* context) {
 
         if (result != ERROR_SUCCESS) {
             LOG_ERROR("RegNotifyChangeKeyValue failed for {}: {}",
-                     converter.to_bytes(context->full_path), result);
+                     WideToUtf8(context->full_path), result);
             break;
         }
 
@@ -152,12 +158,11 @@ void RegistryMonitor::MonitorRegistryKey(WatchContext* context) {
 }
 
 void RegistryMonitor::PublishRegistryEvent(const RegistryChange& change) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    std::string key_path_str = converter.to_bytes(change.key_path);
+    std::string key_path_str = WideToUtf8(change.key_path);
 
     Event event(EventType::REGISTRY_WRITE, 0, "RegistryMonitor");
     event.metadata["key_path"] = key_path_str;
-    event.metadata["value_name"] = converter.to_bytes(change.value_name);
+    event.metadata["value_name"] = WideToUtf8(change.value_name);
 
     EventBus::Instance().Publish(event);
 

@@ -29,32 +29,32 @@ public:
     static std::shared_ptr<spdlog::logger> Get();
 
     template<typename... Args>
-    static void Trace(const char* fmt, Args&&... args) {
+    static void Trace(spdlog::string_view_t fmt, Args&&... args) {
         Get()->trace(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Debug(const char* fmt, Args&&... args) {
+    static void Debug(spdlog::string_view_t fmt, Args&&... args) {
         Get()->debug(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Info(const char* fmt, Args&&... args) {
+    static void Info(spdlog::string_view_t fmt, Args&&... args) {
         Get()->info(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Warn(const char* fmt, Args&&... args) {
+    static void Warn(spdlog::string_view_t fmt, Args&&... args) {
         Get()->warn(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Error(const char* fmt, Args&&... args) {
+    static void Error(spdlog::string_view_t fmt, Args&&... args) {
         Get()->error(fmt, std::forward<Args>(args)...);
     }
 
     template<typename... Args>
-    static void Critical(const char* fmt, Args&&... args) {
+    static void Critical(spdlog::string_view_t fmt, Args&&... args) {
         Get()->critical(fmt, std::forward<Args>(args)...);
     }
 

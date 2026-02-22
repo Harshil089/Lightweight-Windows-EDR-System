@@ -2,9 +2,10 @@
 
 #include "core/EventBus.hpp"
 #include "core/Logger.hpp"
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #include <windows.h>
 #include <iphlpapi.h>
-#include <ws2tcpip.h>
 #include <atomic>
 #include <memory>
 #include <string>
