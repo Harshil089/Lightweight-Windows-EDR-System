@@ -59,11 +59,13 @@ cd CortexEDR
 ### 4. Build CortexEDR
 
 Option A - Using the build script:
+
 ```powershell
 .\build.bat
 ```
 
 Option B - Manual CMake build:
+
 ```powershell
 # Configure
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake
@@ -90,6 +92,7 @@ cd C:\CortexEDR
 ```
 
 You should see output like:
+
 ```
 [2024-02-21 10:30:45] [INFO] [CortexEDR] ==========================================================
 [2024-02-21 10:30:45] [INFO] [CortexEDR]   CortexEDR - Windows Endpoint Detection & Response
@@ -174,12 +177,15 @@ Press `Ctrl+C` in the CortexEDR console window. You should see:
 ## Troubleshooting
 
 ### "Access Denied" or "Privilege Error"
+
 **Solution**: Make sure you're running as Administrator. Right-click PowerShell → "Run as Administrator"
 
 ### "Failed to start ProcessMonitor"
+
 **Cause**: ETW requires administrator privileges and may conflict with existing trace sessions.
 
 **Solution**:
+
 ```powershell
 # Stop any existing CortexEDR trace sessions
 logman stop CortexEDR_ProcessTrace -ets
@@ -188,14 +194,18 @@ logman stop CortexEDR_ProcessTrace -ets
 ```
 
 ### "vcpkg: command not found"
+
 **Solution**: Make sure you set the VCPKG_ROOT environment variable and reopened PowerShell:
+
 ```powershell
 setx VCPKG_ROOT "C:\vcpkg" /M
 # Close and reopen PowerShell
 ```
 
 ### Build Fails with "Cannot find yaml-cpp"
+
 **Solution**: Verify vcpkg integration:
+
 ```powershell
 cd C:\vcpkg
 .\vcpkg integrate install
@@ -203,17 +213,21 @@ cd C:\vcpkg
 ```
 
 ### High CPU Usage
+
 **Cause**: File monitoring on high-activity directories can generate many events.
 
 **Solution**: Edit `config/config.yaml` and reduce monitored paths:
+
 ```yaml
-file_monitoring:
+ file_monitoring:
   watch_paths:
     - C:\Windows\System32  # Keep only critical paths
 ```
 
 ### No Events Appearing
+
 **Checks**:
+
 1. Verify CortexEDR has administrator privileges
 2. Check `logs/cortex.log` for errors
 3. Ensure you're generating actual system activity (create processes, files, etc.)
@@ -222,6 +236,7 @@ file_monitoring:
 ## Testing CortexEDR Detection
 
 ### Test 1: Suspicious Process from Temp
+
 ```powershell
 # Copy a legitimate executable to temp
 copy C:\Windows\System32\notepad.exe C:\Users\Public\temp.exe
@@ -231,6 +246,7 @@ C:\Users\Public\temp.exe
 ```
 
 ### Test 2: Registry Persistence
+
 ```powershell
 # Modify Run key (should trigger "registry_persistence" signal)
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v TestEntry /d "C:\test.exe" /f
@@ -240,12 +256,14 @@ reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v TestEntry /f
 ```
 
 ### Test 3: External Network Connection
+
 ```powershell
 # Connect to external IP (should trigger "external_connection" signal)
 Test-NetConnection -ComputerName 8.8.8.8 -Port 80
 ```
 
 ### Test 4: Combine Multiple Signals
+
 ```powershell
 # This should accumulate risk score across multiple signals
 copy C:\Windows\System32\curl.exe C:\Temp\suspicious.exe

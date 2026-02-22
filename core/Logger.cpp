@@ -22,7 +22,7 @@ void Logger::Initialize(const std::string& log_file_path, size_t max_file_size, 
         std::vector<spdlog::sink_ptr> sinks{console_sink, file_sink};
         logger_ = std::make_shared<spdlog::logger>("CortexEDR", sinks.begin(), sinks.end());
         logger_->set_level(spdlog::level::trace);
-        logger_->flush_on(spdlog::level::error);
+        logger_->flush_on(spdlog::level::err);
 
         spdlog::register_logger(logger_);
 
