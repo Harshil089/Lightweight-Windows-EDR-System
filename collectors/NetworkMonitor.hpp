@@ -1,13 +1,8 @@
 #pragma once
 
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include "core/EventBus.hpp"
-#include "core/Logger.hpp"
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#include <windows.h>
+#include "../core/WindowsHeaders.hpp"
+#include "../core/EventBus.hpp"
+#include "../core/Logger.hpp"
 #include <iphlpapi.h>
 #include <atomic>
 #include <memory>

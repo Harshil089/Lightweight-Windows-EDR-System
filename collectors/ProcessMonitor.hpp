@@ -1,11 +1,8 @@
 #pragma once
 
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include "core/EventBus.hpp"
-#include "core/Logger.hpp"
-#include <windows.h>
+#include "../core/WindowsHeaders.hpp"
+#include "../core/EventBus.hpp"
+#include "../core/Logger.hpp"
 #include <evntrace.h>
 #include <tdh.h>
 #include <atomic>

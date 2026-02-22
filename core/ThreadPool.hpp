@@ -1,13 +1,7 @@
 #pragma once
 
-// On Windows, include Concurrency Runtime before <future> to avoid PPL errors
-#ifdef _WIN32
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include <windows.h>
-#include <concrt.h>
-#endif
+// Include Windows headers first to avoid PPL and macro conflicts
+#include "WindowsHeaders.hpp"
 
 #include <atomic>
 #include <condition_variable>
