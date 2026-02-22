@@ -146,6 +146,8 @@ void FileMonitor::MonitorDirectory(const std::wstring& path) {
 }
 
 void CALLBACK FileMonitor::FileChangeCallback(DWORD error_code, DWORD bytes_transferred, LPOVERLAPPED overlapped) {
+    (void)bytes_transferred;
+    (void)overlapped;
     if (error_code == ERROR_OPERATION_ABORTED) {
         return;
     }

@@ -223,7 +223,7 @@ void ProcessMonitor::PublishProcessEvent(const ProcessEvent& proc_event) {
     }
 
     Event event(
-        proc_event.is_create ? EventType::PROCESS_CREATE : EventType::PROCESS_TERMINATE,
+        (proc_event.is_create ? EventType::PROCESS_CREATE : EventType::PROCESS_TERMINATE),
         proc_event.pid,
         process_name
     );

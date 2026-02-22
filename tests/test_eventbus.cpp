@@ -20,7 +20,7 @@ TEST_F(EventBusTest, SubscribeAndPublish) {
 
     auto id = EventBus::Instance().Subscribe(
         EventType::PROCESS_CREATE,
-        [&call_count](const Event& e) { call_count++; }
+        [&call_count](const Event& e) { (void)e; call_count++; }
     );
 
     Event event(EventType::PROCESS_CREATE, 1234, "test.exe");
@@ -36,12 +36,12 @@ TEST_F(EventBusTest, MultipleSubscribers) {
 
     auto id1 = EventBus::Instance().Subscribe(
         EventType::PROCESS_CREATE,
-        [&count1](const Event& e) { count1++; }
+        [&count1](const Event& e) { (void)e; count1++; }
     );
 
     auto id2 = EventBus::Instance().Subscribe(
         EventType::PROCESS_CREATE,
-        [&count2](const Event& e) { count2++; }
+        [&count2](const Event& e) { (void)e; count2++; }
     );
 
     Event event(EventType::PROCESS_CREATE, 1234, "test.exe");
@@ -59,7 +59,7 @@ TEST_F(EventBusTest, Unsubscribe) {
 
     auto id = EventBus::Instance().Subscribe(
         EventType::PROCESS_CREATE,
-        [&call_count](const Event& e) { call_count++; }
+        [&call_count](const Event& e) { (void)e; call_count++; }
     );
 
     Event event(EventType::PROCESS_CREATE, 1234, "test.exe");
@@ -77,12 +77,12 @@ TEST_F(EventBusTest, DifferentEventTypes) {
 
     auto id1 = EventBus::Instance().Subscribe(
         EventType::PROCESS_CREATE,
-        [&process_count](const Event& e) { process_count++; }
+        [&process_count](const Event& e) { (void)e; process_count++; }
     );
 
     auto id2 = EventBus::Instance().Subscribe(
         EventType::FILE_CREATE,
-        [&file_count](const Event& e) { file_count++; }
+        [&file_count](const Event& e) { (void)e; file_count++; }
     );
 
     Event process_event(EventType::PROCESS_CREATE, 1234, "test.exe");
