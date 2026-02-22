@@ -7,6 +7,11 @@
 #include <iomanip>
 #include <string>
 
+// Undefine Windows macros that conflict with our EventType enum
+#ifdef PROCESS_TERMINATE
+#undef PROCESS_TERMINATE
+#endif
+
 namespace {
 // Helper function to convert wide string to UTF-8
 std::string WideToUtf8(const std::wstring& wstr) {
