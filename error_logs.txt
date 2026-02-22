@@ -6,16 +6,59 @@ MSBuild version 17.14.40+3e7442088 for .NET Framework
 
   cortex_core.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_core.lib
   ProcessMonitor.cpp
-  FileMonitor.cpp
-C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(226,72): error C2589: '(': illegal token on right side
-of '::' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(226,61): error C2062: type 'unknown-type' unexpected [C
-:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(229,5): error C2059: syntax error: ')' [C:\Lightweight-
-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  Generating Code...
+C:\vcpkg\installed\x64-windows\include\fmt\base.h(2269,29): error C2338: static_assert failed: 'formatting of non-void
+pointers is disallowed' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
+  (compiling source file '../collectors/ProcessMonitor.cpp')
+      C:\vcpkg\installed\x64-windows\include\fmt\base.h(2269,29):
+      the template instantiation context (the oldest one first) is
+          C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(49,9):
+          see reference to function template instantiation 'void cortex::Logger::Error<const wchar_t*&,DWORD>(fmt::v12:
+  :fstring<const wchar_t *&,DWORD>,const wchar_t *&,DWORD &&)' being compiled
+          C:\Lightweight-Windows-EDR-System\core\Logger.hpp(54,16):
+          see reference to function template instantiation 'void spdlog::logger::error<const wchar_t*&,_Ty>(fmt::v12::f
+  string<const wchar_t *&,DWORD>,const wchar_t *&,_Ty &&)' being compiled
+          with
+          [
+              _Ty=DWORD
+          ]
+          C:\vcpkg\installed\x64-windows\include\spdlog\logger.h(150,9):
+          see reference to function template instantiation 'void spdlog::logger::log<const wchar_t*&,_Ty>(spdlog::level
+  ::level_enum,fmt::v12::fstring<const wchar_t *&,DWORD>,const wchar_t *&,_Ty &&)' being compiled
+          with
+          [
+              _Ty=DWORD
+          ]
+          C:\vcpkg\installed\x64-windows\include\spdlog\logger.h(85,9):
+          see reference to function template instantiation 'void spdlog::logger::log<const wchar_t*&,_Ty>(spdlog::sourc
+  e_loc,spdlog::level::level_enum,fmt::v12::fstring<const wchar_t *&,DWORD>,const wchar_t *&,_Ty &&)' being compiled
+          with
+          [
+              _Ty=DWORD
+          ]
+          C:\vcpkg\installed\x64-windows\include\spdlog\logger.h(80,9):
+          see reference to function template instantiation 'void spdlog::logger::log_<const wchar_t*&,_Ty>(spdlog::sour
+  ce_loc,spdlog::level::level_enum,spdlog::string_view_t,const wchar_t *&,_Ty &&)' being compiled
+          with
+          [
+              _Ty=DWORD
+          ]
+          C:\vcpkg\installed\x64-windows\include\spdlog\logger.h(328,59):
+          see reference to function template instantiation 'fmt::v12::detail::format_arg_store<fmt::v12::context,2,0,47
+  > fmt::v12::make_format_args<fmt::v12::context,const wchar_t*,_Ty,2,0,47>(const wchar_t *&,_Ty &)' being compiled
+          with
+          [
+              _Ty=DWORD
+          ]
+          C:\vcpkg\installed\x64-windows\include\fmt\base.h(2828,12):
+          see reference to function template instantiation 'fmt::v12::detail::value<Context>::value<const wchar_t*,0>(c
+  onst T &)' being compiled
+          with
+          [
+              Context=fmt::v12::context,
+              T=const wchar_t *
+          ]
+
   cortex_engine.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_engine.lib
-  test_eventbus.cpp
   cortex_tests.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_tests.exe
 ERROR: Build failed
 

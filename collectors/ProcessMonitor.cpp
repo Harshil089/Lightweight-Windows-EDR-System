@@ -46,7 +46,7 @@ bool ProcessMonitor::EnablePrivilege(const wchar_t* privilege) {
 
     LUID luid;
     if (!LookupPrivilegeValueW(nullptr, privilege, &luid)) {
-        LOG_ERROR("Failed to lookup privilege {}: {}", privilege, GetLastError());
+        LOG_ERROR("Failed to lookup privilege {}: {}", WideToUtf8(std::wstring(privilege)), GetLastError());
         CloseHandle(token);
         return false;
     }
