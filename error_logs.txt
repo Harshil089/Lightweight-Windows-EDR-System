@@ -4,45 +4,18 @@
 Building Release configuration...
 MSBuild version 17.14.40+3e7442088 for .NET Framework
 
-  Logger.cpp
   cortex_core.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_core.lib
   ProcessMonitor.cpp
   FileMonitor.cpp
-C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(226,71): error C2589: '(': illegal token on right side
+C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(226,72): error C2589: '(': illegal token on right side
 of '::' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(226,60): error C2062: type 'unknown-type' unexpected [C
+C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(226,61): error C2062: type 'unknown-type' unexpected [C
 :\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
 C:\Lightweight-Windows-EDR-System\collectors\ProcessMonitor.cpp(229,5): error C2059: syntax error: ')' [C:\Lightweight-
 Windows-EDR-System\build\cortex_collectors.vcxproj]
-C:\Lightweight-Windows-EDR-System\collectors\FileMonitor.cpp(148,103): error C2220: the following warning is treated as
- an error [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-C:\Lightweight-Windows-EDR-System\collectors\FileMonitor.cpp(148,103): warning C4100: 'overlapped': unreferenced parame
-ter [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-C:\Lightweight-Windows-EDR-System\collectors\FileMonitor.cpp(148,71): warning C4100: 'bytes_transferred': unreferenced
-parameter [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  NetworkMonitor.cpp
-  RegistryMonitor.cpp
   Generating Code...
-  RiskScorer.cpp
   cortex_engine.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_engine.lib
-  Building Custom Rule C:/Lightweight-Windows-EDR-System/CMakeLists.txt
   test_eventbus.cpp
-C:\Lightweight-Windows-EDR-System\tests\test_eventbus.cpp(23,36): error C2220: the following warning is treated as an e
-rror [C:\Lightweight-Windows-EDR-System\build\cortex_tests.vcxproj]
-C:\Lightweight-Windows-EDR-System\tests\test_eventbus.cpp(23,36): warning C4100: 'e': unreferenced parameter [C:\Lightw
-eight-Windows-EDR-System\build\cortex_tests.vcxproj]
-C:\Lightweight-Windows-EDR-System\tests\test_eventbus.cpp(39,32): warning C4100: 'e': unreferenced parameter [C:\Lightw
-eight-Windows-EDR-System\build\cortex_tests.vcxproj]
-C:\Lightweight-Windows-EDR-System\tests\test_eventbus.cpp(44,32): warning C4100: 'e': unreferenced parameter [C:\Lightw
-eight-Windows-EDR-System\build\cortex_tests.vcxproj]
-C:\Lightweight-Windows-EDR-System\tests\test_eventbus.cpp(62,36): warning C4100: 'e': unreferenced parameter [C:\Lightw
-eight-Windows-EDR-System\build\cortex_tests.vcxproj]
-C:\Lightweight-Windows-EDR-System\tests\test_eventbus.cpp(80,39): warning C4100: 'e': unreferenced parameter [C:\Lightw
-eight-Windows-EDR-System\build\cortex_tests.vcxproj]
-C:\Lightweight-Windows-EDR-System\tests\test_eventbus.cpp(85,36): warning C4100: 'e': unreferenced parameter [C:\Lightw
-eight-Windows-EDR-System\build\cortex_tests.vcxproj]
-  test_threadpool.cpp
-  test_riskscorer.cpp
-  Generating Code...
+  cortex_tests.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_tests.exe
 ERROR: Build failed
 

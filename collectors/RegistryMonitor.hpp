@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
 #include "core/EventBus.hpp"
 #include "core/Logger.hpp"
 #include <windows.h>
