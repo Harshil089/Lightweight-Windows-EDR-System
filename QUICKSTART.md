@@ -82,10 +82,11 @@ cd ..
 ### 5. Run CortexEDR
 
 **IMPORTANT**: CortexEDR must be run as Administrator for full functionality.
+ETW process monitoring uses the Windows NT Kernel Logger session, which requires elevated privileges.
 
 ```powershell
-# Open new PowerShell as Administrator
-cd C:\CortexEDR
+# Open PowerShell as Administrator (right-click → "Run as Administrator")
+cd C:\Lightweight-Windows-EDR-System
 
 # Run CortexEDR
 .\build\Release\CortexEDR.exe
@@ -94,45 +95,71 @@ cd C:\CortexEDR
 You should see output like:
 
 ```
-[2024-02-21 10:30:45] [INFO] [CortexEDR] ==========================================================
-[2024-02-21 10:30:45] [INFO] [CortexEDR]   CortexEDR - Windows Endpoint Detection & Response
-[2024-02-21 10:30:45] [INFO] [CortexEDR]   Phase 1: Core Infrastructure & Collectors
-[2024-02-21 10:30:45] [INFO] [CortexEDR] ==========================================================
-[2024-02-21 10:30:45] [INFO] [CortexEDR] Initializing CortexEDR...
-[2024-02-21 10:30:45] [INFO] [CortexEDR] Starting ProcessMonitor with ETW
-[2024-02-21 10:30:45] [INFO] [CortexEDR] Starting FileMonitor for 2 paths
-[2024-02-21 10:30:45] [INFO] [CortexEDR] Starting NetworkMonitor with 2s poll interval
-[2024-02-21 10:30:45] [INFO] [CortexEDR] Starting RegistryMonitor
-[2024-02-21 10:30:45] [INFO] [CortexEDR] CortexEDR is now running. Press Ctrl+C to stop.
+[2026-02-23 09:19:31] [info] [CortexEDR] ==========================================================
+[2026-02-23 09:19:31] [info] [CortexEDR]   CortexEDR - Windows Endpoint Detection & Response
+[2026-02-23 09:19:31] [info] [CortexEDR]   Phase 1: Core Infrastructure & Collectors
+[2026-02-23 09:19:31] [info] [CortexEDR] ==========================================================
+[2026-02-23 09:19:31] [info] [CortexEDR] Initializing CortexEDR...
+[2026-02-23 09:19:31] [info] [CortexEDR] Event subscriptions configured
+[2026-02-23 09:19:31] [info] [CortexEDR] Starting CortexEDR collectors...
+[2026-02-23 09:19:31] [info] [CortexEDR] Starting ProcessMonitor with ETW
+[2026-02-23 09:19:31] [info] [CortexEDR] Starting FileMonitor for 2 paths
+[2026-02-23 09:19:31] [info] [CortexEDR] Starting NetworkMonitor with 2s poll interval
+[2026-02-23 09:19:31] [info] [CortexEDR] Starting RegistryMonitor
+[2026-02-23 09:19:31] [info] [CortexEDR] CortexEDR is now running. Press Ctrl+C to stop.
 ```
 
 ### 6. Verify It's Working
 
-Open a new PowerShell window and run some test commands:
+Open a **second** PowerShell window (does not need to be elevated) and run:
 
 ```powershell
-# This will trigger process monitoring
+# Trigger process monitoring — launch any process
 notepad.exe
 
-# This will trigger file monitoring (if C:\Windows\Temp is monitored)
-echo "test" > C:\Windows\Temp\test.txt
+# Trigger file monitoring (watches C:\Windows\System32 and C:\Users by default)
+New-Item -Path "$env:USERPROFILE\Documents\test_edr.txt" -ItemType File -Force
 
-# This will trigger network monitoring
-curl https://example.com
+# Trigger network monitoring — connect to an external host
+Test-NetConnection -ComputerName 8.8.8.8 -Port 443
+
+# Trigger registry persistence monitoring
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v EDRTest /d "C:\test.exe" /f
+# Clean up after testing:
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v EDRTest /f
 ```
 
-Check the CortexEDR console - you should see log messages about detected events.
+Watch the CortexEDR console in the Administrator window — you should see event log lines appear in real time.
 
 ### 7. View Logs
 
-CortexEDR logs are stored in `logs/cortex.log`:
+CortexEDR writes structured logs to `logs\cortex.log` relative to the working directory:
 
 ```powershell
-# View real-time logs
-Get-Content logs\cortex.log -Wait -Tail 20
+# Stream live log output (tail -f equivalent)
+Get-Content C:\Lightweight-Windows-EDR-System\logs\cortex.log -Wait -Tail 30
 
-# Search for high-risk detections
-Select-String -Path logs\cortex.log -Pattern "HIGH RISK"
+# Show only warnings and above (error, critical)
+Get-Content C:\Lightweight-Windows-EDR-System\logs\cortex.log |
+    Where-Object { $_ -match '\[(warn|error|critical)\]' }
+
+# Search for high-risk process detections
+Select-String -Path C:\Lightweight-Windows-EDR-System\logs\cortex.log -Pattern "HIGH RISK"
+
+# Show all events for a specific PID
+Select-String -Path C:\Lightweight-Windows-EDR-System\logs\cortex.log -Pattern "PID=1234"
+```
+
+### 8. Inspect the Active ETW Kernel Session
+
+While CortexEDR is running, you can verify the NT Kernel Logger session is active:
+
+```powershell
+# List all active ETW trace sessions — look for "NT Kernel Logger"
+logman query -ets
+
+# Show details of the NT Kernel Logger session specifically
+logman query "NT Kernel Logger" -ets
 ```
 
 ## Configuration
@@ -164,14 +191,21 @@ After editing, restart CortexEDR to apply changes.
 Press `Ctrl+C` in the CortexEDR console window. You should see:
 
 ```
-[INFO] Received shutdown signal
-[INFO] Stopping CortexEDR...
-[INFO] Stopping RegistryMonitor
-[INFO] Stopping NetworkMonitor
-[INFO] Stopping FileMonitor
-[INFO] Stopping ProcessMonitor
-[INFO] All collectors stopped
-[INFO] CortexEDR shutdown complete
+[info] Received shutdown signal
+[info] Stopping CortexEDR...
+[info] Stopping RegistryMonitor
+[info] Stopping NetworkMonitor
+[info] Stopping FileMonitor
+[info] Stopping ProcessMonitor
+[info] All collectors stopped
+[info] CortexEDR shutdown complete
+```
+
+If the process is killed without a clean shutdown (e.g. Task Manager), the NT Kernel Logger
+session may remain open. Release it manually before restarting:
+
+```powershell
+logman stop "NT Kernel Logger" -ets
 ```
 
 ## Troubleshooting
@@ -180,18 +214,26 @@ Press `Ctrl+C` in the CortexEDR console window. You should see:
 
 **Solution**: Make sure you're running as Administrator. Right-click PowerShell → "Run as Administrator"
 
-### "Failed to start ProcessMonitor"
+### "Failed to start ProcessMonitor" (error 87)
 
-**Cause**: ETW requires administrator privileges and may conflict with existing trace sessions.
+**Cause**: ETW process monitoring uses the Windows NT Kernel Logger, which requires Administrator
+privileges. Error 87 (`ERROR_INVALID_PARAMETER`) means the session could not be opened.
 
 **Solution**:
 
 ```powershell
-# Stop any existing CortexEDR trace sessions
-logman stop CortexEDR_ProcessTrace -ets
+# 1. Confirm you are running as Administrator
+whoami /priv | Select-String "SeDebugPrivilege"
 
-# Then restart CortexEDR
+# 2. Stop any existing NT Kernel Logger session that may be held by another tool
+logman stop "NT Kernel Logger" -ets
+
+# 3. Restart CortexEDR
+.\build\Release\CortexEDR.exe
 ```
+
+**Note**: Only one process can hold the NT Kernel Logger session at a time. Tools like
+PerfMon, xperf, or WPR may also hold it. Stop those tools before starting CortexEDR.
 
 ### "vcpkg: command not found"
 
