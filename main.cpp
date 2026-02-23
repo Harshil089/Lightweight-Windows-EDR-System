@@ -78,8 +78,8 @@ public:
 
         process_monitor_ = std::make_unique<ProcessMonitor>();
         if (!process_monitor_->Start()) {
-            LOG_ERROR("Failed to start ProcessMonitor");
-            return false;
+            LOG_ERROR("Failed to start ProcessMonitor - process events will not be collected");
+            process_monitor_.reset();
         }
 
         std::vector<std::wstring> watch_paths = {

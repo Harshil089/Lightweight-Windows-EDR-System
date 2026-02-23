@@ -89,7 +89,8 @@ bool ProcessMonitor::Start() {
         LOG_WARN("Failed to enable SeDebugPrivilege, some monitoring may be limited");
     }
 
-    size_t buffer_size = sizeof(EVENT_TRACE_PROPERTIES) + (wcslen(SESSION_NAME) + 1) * sizeof(wchar_t);
+    // Buffer must accommodate both LoggerName and LogFileName string fields
+    size_t buffer_size = sizeof(EVENT_TRACE_PROPERTIES) + 2 * (wcslen(SESSION_NAME) + 1) * sizeof(wchar_t);
     trace_properties_ = static_cast<EVENT_TRACE_PROPERTIES*>(malloc(buffer_size));
     if (!trace_properties_) {
         LOG_ERROR("Failed to allocate trace properties");
