@@ -1,7 +1,3 @@
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include <windows.h>
 #include "collectors/ProcessMonitor.hpp"
 #include <evntrace.h>
 #include <evntcons.h>
