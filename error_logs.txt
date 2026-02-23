@@ -5,526 +5,105 @@ Building Release configuration...
 MSBuild version 17.14.40+3e7442088 for .NET Framework
 
   cortex_core.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_core.lib
-  ProcessMonitor.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(246,16): error C2011: 'sockaddr': 'struct'
-type redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(482,8):
-      see declaration of 'sockaddr'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(448,5): error C2143: syntax error: missing
-'}' before 'constant' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(448,5): error C2059: syntax error: 'constan
-t' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(502,1): error C2143: syntax error: missing
-';' before '}' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2def.h(644,16): error C2011: 'sockaddr_in': 'struc
-t' type redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(309,8):
-      see declaration of 'sockaddr_in'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(136,16): error C2011: 'fd_set': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(65,16):
-      see declaration of 'fd_set'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(180,8): error C2011: 'timeval': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(108,8):
-      see declaration of 'timeval'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(236,9): error C2011: 'hostent': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(164,9):
-      see declaration of 'hostent'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(249,9): error C2011: 'netent': 'struct' type
-redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(177,9):
-      see declaration of 'netent'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(256,9): error C2011: 'servent': 'struct' type
- redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(184,9):
-      see declaration of 'servent'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(268,9): error C2011: 'protoent': 'struct' typ
-e redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(196,9):
-      see declaration of 'protoent'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(364,16): error C2011: 'WSAData': 'struct' typ
-e redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(319,16):
-      see declaration of 'WSAData'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(462,8): error C2011: 'sockproto': 'struct' ty
-pe redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(491,8):
-      see declaration of 'sockproto'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(504,9): error C2011: 'linger': 'struct' type
-redefinition [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(528,9):
-      see declaration of 'linger'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1633,1): error C2375: 'accept': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(739,19):
-      see declaration of 'accept'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1655,1): error C2375: 'bind': redefinition; d
-ifferent linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(744,16):
-      see declaration of 'bind'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1676,1): error C2375: 'closesocket': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(749,16):
-      see declaration of 'closesocket'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1693,1): error C2375: 'connect': redefinition
-; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(751,16):
-      see declaration of 'connect'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1714,1): error C2375: 'ioctlsocket': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(756,16):
-      see declaration of 'ioctlsocket'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1737,1): error C2375: 'getpeername': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(761,16):
-      see declaration of 'getpeername'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1758,1): error C2375: 'getsockname': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(766,16):
-      see declaration of 'getsockname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1779,1): error C2375: 'getsockopt': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(771,16):
-      see declaration of 'getsockopt'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1804,1): error C2375: 'htonl': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(778,19):
-      see declaration of 'htonl'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1821,1): error C2375: 'htons': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(780,20):
-      see declaration of 'htons'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1839,1): error C2375: 'inet_addr': redefiniti
-on; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(782,26):
-      see declaration of 'inet_addr'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1857,1): error C2375: 'inet_ntoa': redefiniti
-on; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(784,23):
-      see declaration of 'inet_ntoa'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1957,1): error C2375: 'listen': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(786,16):
-      see declaration of 'listen'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1976,1): error C2375: 'ntohl': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(790,19):
-      see declaration of 'ntohl'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(1993,1): error C2375: 'ntohs': redefinition;
-different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(792,20):
-      see declaration of 'ntohs'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2010,1): error C2375: 'recv': redefinition; d
-ifferent linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(794,16):
-      see declaration of 'recv'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2033,1): error C2375: 'recvfrom': redefinitio
-n; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(800,16):
-      see declaration of 'recvfrom'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2060,1): error C2375: 'select': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(808,16):
-      see declaration of 'select'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2085,1): error C2375: 'send': redefinition; d
-ifferent linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(815,16):
-      see declaration of 'send'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2108,1): error C2375: 'sendto': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(821,16):
-      see declaration of 'sendto'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2135,1): error C2375: 'setsockopt': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(829,16):
-      see declaration of 'setsockopt'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2160,1): error C2375: 'shutdown': redefinitio
-n; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(836,16):
-      see declaration of 'shutdown'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2180,1): error C2375: 'socket': redefinition;
- different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(840,19):
-      see declaration of 'socket'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2205,1): error C2375: 'gethostbyaddr': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(847,33):
-      see declaration of 'gethostbyaddr'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2227,1): error C2375: 'gethostbyname': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(852,33):
-      see declaration of 'gethostbyname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2244,1): error C2375: 'gethostname': redefini
-tion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(854,16):
-      see declaration of 'gethostname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2284,1): error C2375: 'getservbyport': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(858,33):
-      see declaration of 'getservbyport'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2303,1): error C2375: 'getservbyname': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(862,33):
-      see declaration of 'getservbyname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2322,1): error C2375: 'getprotobynumber': red
-efinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(866,34):
-      see declaration of 'getprotobynumber'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2339,1): error C2375: 'getprotobyname': redef
-inition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(868,34):
-      see declaration of 'getprotobyname'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2359,1): error C2375: 'WSAStartup': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(872,16):
-      see declaration of 'WSAStartup'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2379,1): error C2375: 'WSACleanup': redefinit
-ion; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(876,16):
-      see declaration of 'WSACleanup'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2396,1): error C2375: 'WSASetLastError': rede
-finition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(878,17):
-      see declaration of 'WSASetLastError'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2413,1): error C2375: 'WSAGetLastError': rede
-finition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(880,16):
-      see declaration of 'WSAGetLastError'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2434,1): error C2375: 'WSAIsBlocking': redefi
-nition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(882,17):
-      see declaration of 'WSAIsBlocking'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2452,1): error C2375: 'WSAUnhookBlockingHook'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(884,16):
-      see declaration of 'WSAUnhookBlockingHook'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2470,1): error C2375: 'WSASetBlockingHook': r
-edefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(886,20):
-      see declaration of 'WSASetBlockingHook'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2488,1): error C2375: 'WSACancelBlockingCall'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(888,16):
-      see declaration of 'WSACancelBlockingCall'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2506,1): error C2375: 'WSAAsyncGetServByName'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(890,19):
-      see declaration of 'WSAAsyncGetServByName'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2534,1): error C2375: 'WSAAsyncGetServByPort'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(898,19):
-      see declaration of 'WSAAsyncGetServByPort'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2562,1): error C2375: 'WSAAsyncGetProtoByName
-': redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(906,19):
-      see declaration of 'WSAAsyncGetProtoByName'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2588,1): error C2375: 'WSAAsyncGetProtoByNumb
-er': redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(913,19):
-      see declaration of 'WSAAsyncGetProtoByNumber'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2614,1): error C2375: 'WSAAsyncGetHostByName'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(920,19):
-      see declaration of 'WSAAsyncGetHostByName'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2640,1): error C2375: 'WSAAsyncGetHostByAddr'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(927,19):
-      see declaration of 'WSAAsyncGetHostByAddr'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2670,1): error C2375: 'WSACancelAsyncRequest'
-: redefinition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(936,16):
-      see declaration of 'WSACancelAsyncRequest'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(2688,1): error C2375: 'WSAAsyncSelect': redef
-inition; different linkage [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock.h(938,16):
-      see declaration of 'WSAAsyncSelect'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(4320,1): error C2059: syntax error: '}' [C:\L
-ightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\winsock2.h(4320,1): error C2143: syntax error: missing '
-;' before '}' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2ipdef.h(42,12): error C2143: syntax error: missin
-g ';' before '{' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\ws2ipdef.h(42,12): error C2447: '{': missing functio
-n header (old-style formal list?) [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(733,10): error C2061: syntax error: identifie
-r 'MULTICAST_MODE_TYPE' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(740,5): error C2065: 'PIP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(740,18): error C2146: syntax error: missing '
-;' before identifier 'Filter' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(740,18): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(742,9): error C2065: 'SourceCount': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(743,40): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(743,60): error C2065: 'SourceList': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(748,12): error C2065: 'IP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(748,12): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(749,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(749,15): error C2065: 'PIP_MSFILTER': undecla
-red identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(749,29): error C2146: syntax error: missing '
-;' before identifier 'HeapAlloc' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(750,9): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(755,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(756,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(757,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(757,26): error C2065: 'FilterMode': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(758,5): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(758,27): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(759,9): error C2065: 'SourceCount': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2065: 'Filter': undeclared ide
-ntifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2065: 'SourceList': undeclared
- identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2065: 'SourceCount': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9): error C2660: 'memcpy': function does
-not take 2 arguments [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_string
-  .h(43,15):
-      see declaration of 'memcpy'
-      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(760,9):
-      while trying to match the argument list '()'
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(764,47): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(767,35): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(779,11): error C2061: syntax error: identifie
-r 'MULTICAST_MODE_TYPE' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(786,5): error C2065: 'PIP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(786,18): error C2146: syntax error: missing '
-;' before identifier 'Filter' [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(786,18): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(788,10): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(789,40): error C2065: 'Filter': undeclared id
-entifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(789,60): error C2065: 'SourceList': undeclare
-d identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(794,12): error C2065: 'IP_MSFILTER': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(794,12): error C2065: 'SourceCount': undeclar
-ed identifier [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\ws2tcpip.h(794,12): error C1003: error count exceeds 100
-; stopping compilation [C:\Lightweight-Windows-EDR-System\build\cortex_collectors.vcxproj]
-  (compiling source file '../collectors/ProcessMonitor.cpp')
-
+  cortex_collectors.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_collectors.lib
   cortex_engine.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_engine.lib
+  CortexEDR.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\CortexEDR.exe
   cortex_tests.vcxproj -> C:\Lightweight-Windows-EDR-System\build\Release\cortex_tests.exe
-ERROR: Build failed
+
+Running tests...
+Test project C:/Lightweight-Windows-EDR-System/build
+    Start 1: cortex_tests
+1/1 Test #1: cortex_tests .....................***Failed    0.15 sec
+Running main() from C:\vcpkg\buildtrees\gtest\src\v1.17.0-0c449efaff.clean\googletest\src\gtest_main.cc
+[==========] Running 17 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 4 tests from EventBusTest
+[ RUN      ] EventBusTest.SubscribeAndPublish
+[       OK ] EventBusTest.SubscribeAndPublish (0 ms)
+[ RUN      ] EventBusTest.MultipleSubscribers
+[       OK ] EventBusTest.MultipleSubscribers (0 ms)
+[ RUN      ] EventBusTest.Unsubscribe
+[       OK ] EventBusTest.Unsubscribe (0 ms)
+[ RUN      ] EventBusTest.DifferentEventTypes
+[       OK ] EventBusTest.DifferentEventTypes (0 ms)
+[----------] 4 tests from EventBusTest (0 ms total)
+
+[----------] 4 tests from ThreadPoolTest
+[ RUN      ] ThreadPoolTest.BasicExecution
+[       OK ] ThreadPoolTest.BasicExecution (1 ms)
+[ RUN      ] ThreadPoolTest.MultipleTasksSequential
+[       OK ] ThreadPoolTest.MultipleTasksSequential (0 ms)
+[ RUN      ] ThreadPoolTest.ReturnValues
+[       OK ] ThreadPoolTest.ReturnValues (0 ms)
+[ RUN      ] ThreadPoolTest.ShutdownWaitsForTasks
+[       OK ] ThreadPoolTest.ShutdownWaitsForTasks (104 ms)
+[----------] 4 tests from ThreadPoolTest (107 ms total)
+
+[----------] 9 tests from RiskScorerTest
+[ RUN      ] RiskScorerTest.InitialScoreIsZero
+[       OK ] RiskScorerTest.InitialScoreIsZero (0 ms)
+[ RUN      ] RiskScorerTest.ProcessFromTempDirectory
+[2026-02-23 09:19:16.894] [info] [CortexEDR] Logger initialized: logs/cortex.log
+[       OK ] RiskScorerTest.ProcessFromTempDirectory (0 ms)
+[ RUN      ] RiskScorerTest.WriteToSystemDirectory
+[       OK ] RiskScorerTest.WriteToSystemDirectory (0 ms)
+[ RUN      ] RiskScorerTest.RegistryPersistence
+[       OK ] RiskScorerTest.RegistryPersistence (0 ms)
+[ RUN      ] RiskScorerTest.ExternalNetworkConnection
+[       OK ] RiskScorerTest.ExternalNetworkConnection (0 ms)
+[ RUN      ] RiskScorerTest.SuspiciousPort
+[       OK ] RiskScorerTest.SuspiciousPort (0 ms)
+[ RUN      ] RiskScorerTest.AccumulatedRiskScore
+[       OK ] RiskScorerTest.AccumulatedRiskScore (0 ms)
+[ RUN      ] RiskScorerTest.ClearProcessScore
+[       OK ] RiskScorerTest.ClearProcessScore (0 ms)
+[ RUN      ] RiskScorerTest.CustomThresholds
+C:\Lightweight-Windows-EDR-System\tests\test_riskscorer.cpp(108): error: Expected equality of these values:
+  risk.level
+    Which is: 4-byte object <00-00 00-00>
+  RiskLevel::MEDIUM
+    Which is: 4-byte object <01-00 00-00>
+
+[  FAILED  ] RiskScorerTest.CustomThresholds (0 ms)
+[----------] 9 tests from RiskScorerTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 17 tests from 3 test suites ran. (108 ms total)
+[  PASSED  ] 16 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] RiskScorerTest.CustomThresholds
+
+ 1 FAILED TEST
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.16 sec
+
+The following tests FAILED:
+          1 - cortex_tests (Failed)
+Errors while running CTest
+
+========================================
+Build complete!
+Executable: build\Release\CortexEDR.exe
+========================================
+
+To run CortexEDR:
+  1. Open Command Prompt as Administrator
+  2. Run: build\Release\CortexEDR.exe
+
+PS C:\Lightweight-Windows-EDR-System> build\Release\CortexEDR.exe
+[2026-02-23 09:19:31.528] [info] [CortexEDR] Logger initialized: logs/cortex.log
+[2026-02-23 09:19:31.529] [info] [CortexEDR] ==========================================================
+[2026-02-23 09:19:31.529] [info] [CortexEDR]   CortexEDR - Windows Endpoint Detection & Response
+[2026-02-23 09:19:31.530] [info] [CortexEDR]   Phase 1: Core Infrastructure & Collectors
+[2026-02-23 09:19:31.530] [info] [CortexEDR] ==========================================================
+[2026-02-23 09:19:31.531] [info] [CortexEDR] Initializing CortexEDR...
+[2026-02-23 09:19:31.531] [info] [CortexEDR] Event subscriptions configured
+[2026-02-23 09:19:31.531] [info] [CortexEDR] Starting CortexEDR collectors...
+[2026-02-23 09:19:31.532] [info] [CortexEDR] Starting ProcessMonitor with ETW
+[2026-02-23 09:19:31.533] [error] [CortexEDR] Failed to start trace session: 87
+[2026-02-23 09:19:31.534] [error] [CortexEDR] Failed to start ProcessMonitor
+[2026-02-23 09:19:31.534] [critical] [CortexEDR] Failed to start CortexEDR
+PS C:\Lightweight-Windows-EDR-System>

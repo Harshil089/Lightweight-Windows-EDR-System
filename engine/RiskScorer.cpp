@@ -111,7 +111,7 @@ RiskLevel RiskScorer::CalculateLevel(uint32_t score) const {
     if (score >= threshold_critical_) return RiskLevel::CRITICAL;
     if (score >= threshold_high_) return RiskLevel::HIGH;
     if (score >= threshold_medium_) return RiskLevel::MEDIUM;
-    if (score >= threshold_low_) return RiskLevel::LOW;
+    if (score >= threshold_low_) return RiskLevel::MEDIUM;
     return RiskLevel::LOW;
 }
 

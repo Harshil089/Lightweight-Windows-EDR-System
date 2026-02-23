@@ -51,7 +51,7 @@ private:
     TRACEHANDLE trace_handle_{0};
     EVENT_TRACE_PROPERTIES* trace_properties_{nullptr};
 
-    static constexpr wchar_t SESSION_NAME[] = L"CortexEDR_ProcessTrace";
+    static constexpr wchar_t SESSION_NAME[] = KERNEL_LOGGER_NAMEW;
     static ProcessMonitor* instance_;
 };
 
