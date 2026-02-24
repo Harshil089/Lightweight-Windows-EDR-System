@@ -77,6 +77,22 @@ process_monitoring:
   # Fallback to WMI if ETW unavailable
   fallback_to_wmi: true
 
+# Rule engine
+rules:
+  # Path to YAML rules file
+  rules_file: config/rules.yaml
+
+# Behavioral correlation
+behavior_correlation:
+  enabled: true
+  timeline_window_seconds: 60
+
+  # Enabled pattern detections
+  patterns:
+    - dropper
+    - persistence
+    - lateral_movement
+
 # Response actions
 response:
   # Enable automatic containment

@@ -9,6 +9,9 @@
 #include "collectors/NetworkMonitor.hpp"
 #include "collectors/RegistryMonitor.hpp"
 #include "engine/RiskScorer.hpp"
+#include "engine/RuleEngine.hpp"
+#include "engine/BehaviorCorrelator.hpp"
+#include "response/ContainmentManager.hpp"
 
 #include <iostream>
 #include <csignal>
@@ -70,6 +73,29 @@ public:
         );
 
         LOG_INFO("Event subscriptions configured");
+
+        // Initialize Phase 2 components
+        LOG_INFO("Initializing Phase 2 components...");
+
+        // RuleEngine
+        rule_engine_ = std::make_unique<RuleEngine>();
+        if (!rule_engine_->Initialize("config/rules.yaml", risk_scorer_.get())) {
+            LOG_WARN("Failed to initialize RuleEngine, continuing without rules");
+        }
+
+        // BehaviorCorrelator
+        behavior_correlator_ = std::make_unique<BehaviorCorrelator>();
+        behavior_correlator_->Initialize(risk_scorer_.get());
+
+        // ContainmentManager
+        containment_manager_ = std::make_unique<ContainmentManager>();
+        containment_manager_->Initialize(
+            false,  // auto_contain = false (manual mode for safety)
+            true,   // require_confirmation = true
+            "C:\\ProgramData\\CortexEDR\\quarantine"
+        );
+
+        LOG_INFO("Phase 2 components initialized");
         return true;
     }
 
@@ -105,6 +131,23 @@ public:
         }
 
         LOG_INFO("All collectors started successfully");
+
+        // Start Phase 2 components
+        LOG_INFO("Starting Phase 2 components...");
+
+        if (rule_engine_) {
+            rule_engine_->Start();
+        }
+
+        if (behavior_correlator_) {
+            behavior_correlator_->Start();
+        }
+
+        if (containment_manager_) {
+            containment_manager_->Start();
+        }
+
+        LOG_INFO("Phase 2 components started");
         return true;
     }
 
@@ -129,6 +172,20 @@ public:
     void Stop() {
         LOG_INFO("Stopping CortexEDR...");
 
+        // Stop Phase 2 components first
+        if (containment_manager_) {
+            containment_manager_->Stop();
+        }
+
+        if (behavior_correlator_) {
+            behavior_correlator_->Stop();
+        }
+
+        if (rule_engine_) {
+            rule_engine_->Stop();
+        }
+
+        // Stop collectors
         if (registry_monitor_) {
             registry_monitor_->Stop();
         }
@@ -145,7 +202,7 @@ public:
             process_monitor_->Stop();
         }
 
-        LOG_INFO("All collectors stopped");
+        LOG_INFO("All components stopped");
     }
 
 private:
@@ -168,6 +225,9 @@ private:
     std::unique_ptr<NetworkMonitor> network_monitor_;
     std::unique_ptr<RegistryMonitor> registry_monitor_;
     std::unique_ptr<RiskScorer> risk_scorer_;
+    std::unique_ptr<RuleEngine> rule_engine_;
+    std::unique_ptr<BehaviorCorrelator> behavior_correlator_;
+    std::unique_ptr<ContainmentManager> containment_manager_;
 
     SubscriptionId event_subscriber_id_;
     std::atomic<size_t> event_count_{0};
@@ -181,7 +241,7 @@ int main() {
 
     LOG_INFO("==========================================================");
     LOG_INFO("  CortexEDR - Windows Endpoint Detection & Response");
-    LOG_INFO("  Phase 1: Core Infrastructure & Collectors");
+    LOG_INFO("  Phase 2: Detection Engine & Response");
     LOG_INFO("==========================================================");
 
     std::signal(SIGINT, cortex::SignalHandler);

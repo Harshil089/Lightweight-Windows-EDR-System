@@ -55,10 +55,14 @@ target_link_libraries(cortex_collectors PUBLIC
     uuid
 )
 
-# Engine library (for future phases)
+# Engine library
 add_library(cortex_engine STATIC
     engine/RiskScorer.cpp
     engine/RiskScorer.hpp
+    engine/RuleEngine.cpp
+    engine/RuleEngine.hpp
+    engine/BehaviorCorrelator.cpp
+    engine/BehaviorCorrelator.hpp
 )
 
 target_include_directories(cortex_engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
@@ -66,6 +70,19 @@ target_link_libraries(cortex_engine PUBLIC
     cortex_core
     nlohmann_json::nlohmann_json
     yaml-cpp
+)
+
+# Response library
+add_library(cortex_response STATIC
+    response/ContainmentManager.cpp
+    response/ContainmentManager.hpp
+)
+
+target_include_directories(cortex_response PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(cortex_response PUBLIC
+    cortex_core
+    ole32
+    oleaut32
 )
 
 # Main executable
@@ -77,6 +94,7 @@ target_link_libraries(CortexEDR PRIVATE
     cortex_core
     cortex_collectors
     cortex_engine
+    cortex_response
     yaml-cpp
     nlohmann_json::nlohmann_json
     ntdll
@@ -101,4 +119,4 @@ add_test(NAME cortex_tests COMMAND cortex_tests)
 
 # Installation
 install(TARGETS CortexEDR RUNTIME DESTINATION bin)
-install(FILES config/config.yaml DESTINATION bin/config)
+install(FILES config/config.yaml config/rules.yaml DESTINATION bin/config)

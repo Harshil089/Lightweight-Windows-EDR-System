@@ -1,0 +1,126 @@
+rules:
+  # Hash-based IOC rules
+  - name: "Known Malware Hash - Example Mimikatz"
+    enabled: true
+    type: "hash"
+    patterns:
+      - "e4a9c3a6d6f5e8b2c1d3f7a9b5c8e2f4"  # Example MD5
+      - "a1b2c3d4e5f6789012345678901234567890123456789012345678901234"  # Example SHA256
+    risk_points: 30
+    action: "alert"
+
+  # Path-based rules
+  - name: "Suspicious Temp Execution"
+    enabled: true
+    type: "path"
+    patterns:
+      - "*\\temp\\*.exe"
+      - "*\\tmp\\*.exe"
+    risk_points: 15
+    action: "log"
+
+  - name: "Suspicious AppData Execution"
+    enabled: true
+    type: "path"
+    patterns:
+      - "*\\appdata\\local\\temp\\*.exe"
+      - "*\\appdata\\roaming\\*.exe"
+    risk_points: 15
+    action: "log"
+
+  - name: "System Directory Write"
+    enabled: true
+    type: "path"
+    patterns:
+      - "*\\windows\\system32\\*.dll"
+      - "*\\windows\\system32\\*.exe"
+      - "*\\windows\\syswow64\\*.dll"
+    risk_points: 20
+    action: "alert"
+
+  - name: "Suspicious Script Execution"
+    enabled: true
+    type: "path"
+    patterns:
+      - "*\\temp\\*.ps1"
+      - "*\\temp\\*.vbs"
+      - "*\\temp\\*.js"
+      - "*\\appdata\\*.ps1"
+    risk_points: 15
+    action: "log"
+
+  # Network-based IOC rules
+  - name: "C2 Network Indicator - Tor Exit Nodes"
+    enabled: true
+    type: "network"
+    patterns:
+      - "185.220.101.*"  # Known Tor exit node range
+      - "185.220.102.*"
+    risk_points: 25
+    action: "escalate"
+
+  - name: "Known Malicious Domain Pattern"
+    enabled: false  # Disabled by default - requires domain resolution
+    type: "network"
+    patterns:
+      - "*.malicious.com"
+      - "*.evil.net"
+    risk_points: 30
+    action: "alert"
+
+  - name: "Suspicious High-Risk Ports"
+    enabled: true
+    type: "network"
+    patterns:
+      - "*:4444"   # Metasploit default
+      - "*:1337"   # Elite/Leet port
+      - "*:31337"  # Back Orifice
+      - "*:6667"   # IRC (potential C2)
+    risk_points: 20
+    action: "alert"
+
+  # Registry-based persistence rules
+  - name: "Persistence Registry Key Modification"
+    enabled: true
+    type: "registry"
+    patterns:
+      - "*\\currentversion\\run\\*"
+      - "*\\currentversion\\runonce\\*"
+    risk_points: 20
+    action: "alert"
+
+  - name: "Service Installation"
+    enabled: true
+    type: "registry"
+    patterns:
+      - "*\\currentcontrolset\\services\\*"
+    risk_points: 15
+    action: "log"
+
+  - name: "Winlogon Persistence"
+    enabled: true
+    type: "registry"
+    patterns:
+      - "*\\windows nt\\currentversion\\winlogon\\*"
+    risk_points: 25
+    action: "alert"
+
+  # Additional suspicious patterns
+  - name: "Suspicious Downloads Folder Execution"
+    enabled: true
+    type: "path"
+    patterns:
+      - "*\\downloads\\*.exe"
+      - "*\\downloads\\*.bat"
+      - "*\\downloads\\*.cmd"
+    risk_points: 10
+    action: "log"
+
+  - name: "Recycler/Recycle Bin Execution"
+    enabled: true
+    type: "path"
+    patterns:
+      - "*\\$recycle.bin\\*.exe"
+      - "*\\recycler\\*.exe"
+    risk_points: 25
+    action: "alert"
