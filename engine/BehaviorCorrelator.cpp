@@ -176,7 +176,6 @@ bool BehaviorCorrelator::DetectDropperPattern(const ProcessTimeline& timeline) {
         return false;
     }
 
-    uint64_t current_time = GetCurrentTimestamp();
     uint64_t window_ms = DROPPER_WINDOW_SECONDS * 1000;
 
     // Look for the pattern in the timeline
@@ -243,7 +242,6 @@ bool BehaviorCorrelator::DetectPersistencePattern(const ProcessTimeline& timelin
         return false;
     }
 
-    uint64_t current_time = GetCurrentTimestamp();
     uint64_t window_ms = PERSISTENCE_WINDOW_SECONDS * 1000;
 
     // Look for the pattern
@@ -300,7 +298,6 @@ bool BehaviorCorrelator::DetectLateralMovementPattern(const ProcessTimeline& tim
         return false;
     }
 
-    uint64_t current_time = GetCurrentTimestamp();
     uint64_t window_ms = LATERAL_WINDOW_SECONDS * 1000;
 
     // Track network connections

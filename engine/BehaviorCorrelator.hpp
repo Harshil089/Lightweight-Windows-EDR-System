@@ -27,6 +27,7 @@ struct ProcessTimeline {
     std::deque<Event> events; // Ring buffer (60s window)
     uint64_t last_cleanup_time;
 
+    ProcessTimeline() : pid(0), last_cleanup_time(0) {}
     ProcessTimeline(uint32_t p) : pid(p), last_cleanup_time(0) {}
 };
 

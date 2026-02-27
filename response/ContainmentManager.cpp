@@ -76,11 +76,11 @@ void ContainmentManager::Stop() {
 }
 
 bool ContainmentManager::EnableSeDebugPrivilege() {
-    return EnablePrivilege(SE_DEBUG_NAME);
+    return EnablePrivilege(L"SeDebugPrivilege");
 }
 
 bool ContainmentManager::EnableSeSecurityPrivilege() {
-    return EnablePrivilege(SE_SECURITY_NAME);
+    return EnablePrivilege(L"SeSecurityPrivilege");
 }
 
 bool ContainmentManager::EnablePrivilege(const wchar_t* privilege) {
@@ -174,7 +174,8 @@ ContainmentResult ContainmentManager::TerminateProcess(uint32_t pid) {
 }
 
 bool ContainmentManager::TerminateProcessInternal(uint32_t pid) {
-    HANDLE process_handle = OpenProcess(PROCESS_TERMINATE, FALSE, pid);
+    // PROCESS_TERMINATE is #undef'd in WindowsHeaders.hpp to avoid conflict with EventType enum
+    HANDLE process_handle = OpenProcess(0x0001, FALSE, pid);
     if (process_handle == nullptr) {
         DWORD error = GetLastError();
         LOG_ERROR("Failed to open process {} for termination: {}", pid, error);

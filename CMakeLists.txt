@@ -69,7 +69,7 @@ target_include_directories(cortex_engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(cortex_engine PUBLIC
     cortex_core
     nlohmann_json::nlohmann_json
-    yaml-cpp
+    yaml-cpp::yaml-cpp
 )
 
 # Response library
@@ -95,7 +95,7 @@ target_link_libraries(CortexEDR PRIVATE
     cortex_collectors
     cortex_engine
     cortex_response
-    yaml-cpp
+    yaml-cpp::yaml-cpp
     nlohmann_json::nlohmann_json
     ntdll
 )
