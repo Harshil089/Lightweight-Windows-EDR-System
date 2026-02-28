@@ -29,6 +29,12 @@ CortexEDR/
 ├── telemetry/                # Data export
 │   └── TelemetryExporter     # JSON event export to file/named pipe
 │
+├── compliance/               # Compliance & reporting (Phase 5)
+│   ├── AuditLogger           # Tamper-proof HMAC-SHA256 integrity chain
+│   ├── MitreMapper           # MITRE ATT&CK technique mapping (16 techniques)
+│   ├── ComplianceReporter    # PCI-DSS / HIPAA / SOC 2 reports
+│   └── ForensicsExporter     # Timeline + artifact collection + SHA-256 manifests
+│
 ├── ui/                       # Qt6 graphical user interface
 │   ├── EDRBridge             # MVC adapter connecting Qt signals/slots to the backend
 │   ├── MainWindow            # Sidebar navigation + QStackedWidget layout
@@ -55,7 +61,16 @@ CortexEDR/
 └── main_gui.cpp              # Qt6 GUI entry point
 ```
 
-## Current Status: All Phases Complete
+## Current Status: Phase 5 Complete (Compliance & Reporting)
+
+**Latest Additions (Phase 5):**
+- Tamper-proof audit logging with HMAC-SHA256 integrity chain verification
+- MITRE ATT&CK mapping for all detection rules and behavior patterns
+- Automated compliance report generation for PCI-DSS, HIPAA, and SOC 2 frameworks
+- Forensics data export with SHA-256 integrity manifests
+- 80/80 unit tests passing (30 new compliance tests)
+
+## Previous Status: All Core Phases Complete
 
 **Core Infrastructure:**
 - ✅ Core event bus with pub/sub architecture
@@ -79,6 +94,12 @@ CortexEDR/
 
 **Telemetry:**
 - ✅ JSON event export to file and named pipe
+
+**Compliance & Reporting (Phase 5):**
+- ✅ AuditLogger: Tamper-proof audit trail with HMAC-SHA256 integrity chain
+- ✅ MitreMapper: Maps 16 detection rules/patterns to MITRE ATT&CK techniques
+- ✅ ComplianceReporter: Generates PCI-DSS v4.0, HIPAA, and SOC 2 Type II reports (JSON + HTML)
+- ✅ ForensicsExporter: Event timelines, incident data, artifact collection, SHA-256 integrity manifests
 
 **Qt6 GUI:**
 - ✅ Dark-mode sidebar application (Windows Defender / Malwarebytes aesthetic)
@@ -277,6 +298,17 @@ network_monitoring:
     - 4444  # Metasploit
     - 1337  # Elite
     - 6667  # IRC
+
+# Compliance & Reporting (Phase 5)
+compliance:
+  audit_log:
+    enabled: true
+    hmac_key: "cortex-edr-default-hmac-key-change-in-production"
+  reporting:
+    output_dir: reports/
+  forensics:
+    output_dir: forensics/
+    include_quarantine_files: true
 ```
 
 ## Risk Scoring Model

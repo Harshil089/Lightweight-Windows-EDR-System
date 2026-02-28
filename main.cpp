@@ -14,6 +14,12 @@
 #include "response/ContainmentManager.hpp"
 #include "response/IncidentManager.hpp"
 #include "telemetry/TelemetryExporter.hpp"
+#include "persistence/DatabaseManager.hpp"
+#include "ipc/SharedMemoryServer.hpp"
+#include "compliance/AuditLogger.hpp"
+#include "compliance/MitreMapper.hpp"
+#include "compliance/ComplianceReporter.hpp"
+#include "compliance/ForensicsExporter.hpp"
 
 #include <yaml-cpp/yaml.h>
 #include <iostream>
@@ -106,14 +112,33 @@ public:
         // Initialize Phase 3 components
         LOG_INFO("Initializing Phase 3 components...");
 
+        // DatabaseManager (Phase 4: SQLite persistence)
+        std::string db_path = "data/cortex.db";
+        try {
+            YAML::Node config = YAML::LoadFile("config/config.yaml");
+            if (config["persistence"] && config["persistence"]["database_path"]) {
+                db_path = config["persistence"]["database_path"].as<std::string>();
+            }
+        } catch (...) {}
+
+        database_ = std::make_unique<DatabaseManager>();
+        if (!database_->Initialize(db_path)) {
+            LOG_WARN("Failed to initialize DatabaseManager, continuing without persistence");
+            database_.reset();
+        }
+
         // IncidentManager
         incident_manager_ = std::make_unique<IncidentManager>();
         incident_manager_->Initialize(risk_scorer_.get(), "incidents");
+        if (database_) {
+            incident_manager_->SetDatabaseManager(database_.get());
+            incident_manager_->LoadFromDatabase();
+        }
 
         // TelemetryExporter - load config from config.yaml
         bool telemetry_enabled = true;
         std::string telemetry_export_path = "telemetry/events.ndjson";
-        bool telemetry_named_pipe = false;
+        bool telemetry_named_pipe = true;
         std::string telemetry_pipe_name = "\\\\.\\pipe\\CortexEDR";
 
         try {
@@ -133,8 +158,60 @@ public:
         telemetry_exporter_->Initialize(risk_scorer_.get(), telemetry_enabled,
                                          telemetry_export_path, telemetry_named_pipe,
                                          telemetry_pipe_name);
+        if (database_) {
+            telemetry_exporter_->SetDatabaseManager(database_.get());
+        }
 
-        LOG_INFO("Phase 3 components initialized");
+        // SharedMemoryServer (Phase 4: IPC)
+        std::string shm_name = "Local\\CortexEDR_SharedStatus";
+        try {
+            YAML::Node config = YAML::LoadFile("config/config.yaml");
+            if (config["ipc"] && config["ipc"]["shared_memory_name"]) {
+                shm_name = config["ipc"]["shared_memory_name"].as<std::string>();
+            }
+        } catch (...) {}
+
+        shm_server_ = std::make_unique<SharedMemoryServer>();
+        if (!shm_server_->Create(shm_name)) {
+            LOG_WARN("Failed to create SharedMemoryServer, GUI status polling disabled");
+            shm_server_.reset();
+        }
+
+        LOG_INFO("Phase 3+4 components initialized");
+
+        // Initialize Phase 5: Compliance & Reporting
+        LOG_INFO("Initializing Phase 5 components (Compliance & Reporting)...");
+
+        // AuditLogger - tamper-proof audit trail
+        std::string hmac_key = "cortex-edr-default-hmac-key-change-in-production";
+        try {
+            YAML::Node config = YAML::LoadFile("config/config.yaml");
+            if (config["compliance"] && config["compliance"]["audit_log"] &&
+                config["compliance"]["audit_log"]["hmac_key"]) {
+                hmac_key = config["compliance"]["audit_log"]["hmac_key"].as<std::string>();
+            }
+        } catch (...) {}
+
+        audit_logger_ = std::make_unique<AuditLogger>();
+        if (database_) {
+            audit_logger_->Initialize(database_.get(), hmac_key);
+        }
+
+        // MitreMapper - MITRE ATT&CK technique mapping
+        mitre_mapper_ = std::make_unique<MitreMapper>();
+        mitre_mapper_->Initialize();
+
+        // ComplianceReporter - PCI-DSS, HIPAA, SOC 2 reports
+        compliance_reporter_ = std::make_unique<ComplianceReporter>();
+        compliance_reporter_->Initialize(database_.get(), audit_logger_.get());
+
+        // ForensicsExporter - timeline & artifact collection
+        forensics_exporter_ = std::make_unique<ForensicsExporter>();
+        forensics_exporter_->Initialize(database_.get(), mitre_mapper_.get(), audit_logger_.get());
+
+        LOG_INFO("Phase 5 components initialized (MITRE mappings={}, audit_chain_tip=ok)",
+                 mitre_mapper_->GetMappingCount());
+
         return true;
     }
 
@@ -200,31 +277,83 @@ public:
         }
 
         LOG_INFO("Phase 3 components started");
+
+        // Start Phase 5 components
+        if (audit_logger_) {
+            audit_logger_->Start();
+        }
+
+        LOG_INFO("Phase 5 components started (Compliance & Reporting)");
         return true;
     }
 
     void Run() {
         LOG_INFO("CortexEDR is now running. Press Ctrl+C to stop.");
 
-        size_t event_count = 0;
         auto start_time = std::chrono::steady_clock::now();
+        auto last_shm_update = std::chrono::steady_clock::now();
 
         while (g_running) {
-            std::this_thread::sleep_for(std::chrono::seconds(10));
+            std::this_thread::sleep_for(std::chrono::seconds(2));
 
             auto current_time = std::chrono::steady_clock::now();
             auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(
                 current_time - start_time
             ).count();
 
-            LOG_INFO("Status: Uptime={}s, Events processed={}", elapsed, event_count);
+            // Update shared memory for GUI every 2 seconds
+            if (shm_server_) {
+                SharedStatus status{};
+                status.magic = SHARED_STATUS_MAGIC;
+                status.version = SHARED_STATUS_VERSION;
+                status.protection_active = 1;
+                status.active_incident_count = static_cast<uint32_t>(
+                    incident_manager_ ? incident_manager_->GetActiveIncidentCount() : 0);
+                status.total_incident_count = static_cast<uint32_t>(
+                    incident_manager_ ? incident_manager_->GetTotalIncidentCount() : 0);
+                status.total_event_count = static_cast<uint32_t>(
+                    telemetry_exporter_ ? telemetry_exporter_->GetExportedEventCount() : 0);
+                status.highest_risk_score = 0;
+                status.engine_uptime_ms = static_cast<uint64_t>(elapsed * 1000);
+
+                auto now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    std::chrono::system_clock::now().time_since_epoch()
+                ).count();
+                status.last_updated_ms = static_cast<uint64_t>(now_ms);
+
+                status.process_monitor_active = process_monitor_ ? 1 : 0;
+                status.file_monitor_active = file_monitor_ ? 1 : 0;
+                status.network_monitor_active = network_monitor_ ? 1 : 0;
+                status.registry_monitor_active = registry_monitor_ ? 1 : 0;
+                strncpy_s(status.engine_version, sizeof(status.engine_version), "1.0.0", _TRUNCATE);
+
+                shm_server_->Update(status);
+            }
+
+            // Log status every 10 seconds (every 5th iteration)
+            auto since_log = std::chrono::duration_cast<std::chrono::seconds>(
+                current_time - last_shm_update).count();
+            if (since_log >= 10) {
+                LOG_INFO("Status: Uptime={}s, Events processed={}", elapsed, event_count_.load());
+                last_shm_update = current_time;
+            }
         }
     }
 
     void Stop() {
         LOG_INFO("Stopping CortexEDR...");
 
-        // Stop Phase 3 components first
+        // Stop Phase 5 components first
+        if (audit_logger_) {
+            audit_logger_->Stop();
+        }
+
+        // Destroy shared memory (Phase 4)
+        if (shm_server_) {
+            shm_server_->Destroy();
+        }
+
+        // Stop Phase 3 components
         if (telemetry_exporter_) {
             telemetry_exporter_->Stop();
         }
@@ -263,8 +392,13 @@ public:
             process_monitor_->Stop();
         }
 
-        // Shutdown the async publish pool last — after all components stop publishing
+        // Shutdown the async publish pool — after all components stop publishing
         EventBus::Instance().ShutdownAsyncPool();
+
+        // Shutdown database last (Phase 4)
+        if (database_) {
+            database_->Shutdown();
+        }
 
         LOG_INFO("All components stopped");
     }
@@ -294,6 +428,12 @@ private:
     std::unique_ptr<ContainmentManager> containment_manager_;
     std::unique_ptr<IncidentManager> incident_manager_;
     std::unique_ptr<TelemetryExporter> telemetry_exporter_;
+    std::unique_ptr<DatabaseManager> database_;
+    std::unique_ptr<SharedMemoryServer> shm_server_;
+    std::unique_ptr<AuditLogger> audit_logger_;
+    std::unique_ptr<MitreMapper> mitre_mapper_;
+    std::unique_ptr<ComplianceReporter> compliance_reporter_;
+    std::unique_ptr<ForensicsExporter> forensics_exporter_;
 
     SubscriptionId event_subscriber_id_;
     std::atomic<size_t> event_count_{0};
@@ -307,7 +447,7 @@ int main() {
 
     LOG_INFO("==========================================================");
     LOG_INFO("  CortexEDR - Windows Endpoint Detection & Response");
-    LOG_INFO("  Phase 3: Incident Management & Telemetry");
+    LOG_INFO("  Phase 5: Compliance & Reporting");
     LOG_INFO("==========================================================");
 
     std::signal(SIGINT, cortex::SignalHandler);

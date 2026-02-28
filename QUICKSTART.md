@@ -235,6 +235,172 @@ ctest -C Release --verbose
 .\Release\cortex_tests.exe --gtest_filter=EventBusTest.*
 .\Release\cortex_tests.exe --gtest_filter=RiskScorerTest.*
 .\Release\cortex_tests.exe --gtest_filter=IncidentManagerTest.*
+.\Release\cortex_tests.exe --gtest_filter=*Compliance*
+```
+
+---
+
+## Part 4 — Phase 5: Compliance & Reporting
+
+### Overview
+
+CortexEDR Phase 5 adds four compliance-focused components:
+
+| Component | Purpose |
+|-----------|---------|
+| **AuditLogger** | Tamper-proof audit trail with HMAC-SHA256 integrity chain |
+| **MitreMapper** | Maps detected behaviors to MITRE ATT&CK techniques |
+| **ComplianceReporter** | Generates PCI-DSS, HIPAA, and SOC 2 compliance reports |
+| **ForensicsExporter** | Exports forensic investigation packages with timelines and artifacts |
+
+### Test Compliance Reporting
+
+While the console engine is running, generate compliance reports:
+
+#### Generate an Audit Log
+
+Events are automatically logged. Verify the chain integrity:
+
+```powershell
+# The audit log is stored in the SQLite database (data/cortex.db)
+# Logs are written for: incident creation, containment actions, risk threshold breaches
+
+# Check the database for audit entries (requires sqlite3 command-line tool)
+sqlite3.exe data\cortex.db "SELECT timestamp, action, actor, target FROM audit_log LIMIT 5;"
+```
+
+#### Verify Audit Chain Integrity
+
+The AuditLogger uses HMAC-SHA256 to create a tamper-evident chain. Each entry links to the previous entry, making tampering detectable.
+
+```powershell
+# View the audit trail structure
+sqlite3.exe data\cortex.db "SELECT sequence_id, action, prev_hash, entry_hash FROM audit_log LIMIT 3;"
+
+# Export full audit trail (includes cryptographic verification)
+# This would be called programmatically in real deployments
+```
+
+#### Generate Compliance Reports
+
+The ComplianceReporter generates reports for three frameworks (programmatically):
+
+- **PCI-DSS v4.0**: 8 controls covering audit trails, anti-malware, incident response
+- **HIPAA Security Rule**: 5 controls covering audit controls, integrity mechanisms, incident procedures
+- **SOC 2 Type II**: 5 controls covering logical access, software prevention, monitoring
+
+Example JSON report output structure:
+
+```json
+{
+  "framework": "PCI_DSS",
+  "system_name": "CortexEDR",
+  "generated_at": "2026-02-28T09:15:30Z",
+  "compliant_count": 6,
+  "non_compliant_count": 1,
+  "partial_count": 1,
+  "controls": [
+    {
+      "control_id": "PCI-DSS 5.2",
+      "description": "Anti-malware solution deployed",
+      "status": "COMPLIANT",
+      "evidence": "File and process monitoring active"
+    }
+  ]
+}
+```
+
+#### Export Forensics Data
+
+Generate a forensics investigation package:
+
+```powershell
+# Forensics data is exported as a structured package directory:
+# output_dir/CASE-ID/
+#   ├── timeline.json       (ordered events with MITRE mappings)
+#   ├── incidents.json      (all incidents in time range)
+#   ├── audit_trail.json    (signed audit log)
+#   ├── artifacts/          (quarantined files)
+#   └── manifest.json       (SHA-256 checksums of all files)
+
+# The package includes:
+# - Complete event timeline with MITRE ATT&CK technique IDs
+# - All incidents and their state transitions
+# - Integrity-verified audit trail
+# - Collected quarantined samples
+# - Manifest with cryptographic hashes for evidence integrity
+```
+
+### MITRE ATT&CK Mapping
+
+All detected behaviors are automatically mapped to MITRE ATT&CK techniques. The mapper covers:
+
+| Behavior | MITRE Technique |
+|----------|-----------------|
+| Suspicious temp/appdata execution | T1204.002 (User Execution: Malicious File) |
+| Registry persistence modification | T1547.001 (Boot/Logon Autostart: Registry Run Keys) |
+| Service installation | T1543.003 (Create/Modify System Process: Service) |
+| Winlogon persistence | T1547.004 (Boot/Logon Autostart: Winlogon Helper) |
+| C2 network indicators | T1071.001 (Application Layer Protocol: Web) |
+| Suspicious high-risk ports | T1571 (Non-Standard Port) |
+| System directory writes | T1574.001 (DLL Search Order Hijacking) |
+| Command/script execution | T1059 (Command and Scripting Interpreter) |
+| Dropper patterns | T1105 (Ingress Tool Transfer) |
+| Lateral movement patterns | T1021 (Remote Services) |
+
+### Run Compliance Tests
+
+```powershell
+cd build
+
+# Run all compliance tests (30 tests)
+.\Release\cortex_tests.exe --gtest_filter=*Compliance*
+
+# Or run individual test classes
+.\Release\cortex_tests.exe --gtest_filter=AuditLoggerTest.*
+.\Release\cortex_tests.exe --gtest_filter=MitreMapperTest.*
+.\Release\cortex_tests.exe --gtest_filter=ComplianceReporterTest.*
+.\Release\cortex_tests.exe --gtest_filter=ForensicsExporterTest.*
+```
+
+Expected output:
+
+```
+[==========] Running 30 tests from AuditLoggerTest, MitreMapperTest, ComplianceReporterTest, ForensicsExporterTest.
+[----------] 6 tests from AuditLoggerTest
+[ OK ] AuditLoggerTest.LogActionInsertsEntry
+[ OK ] AuditLoggerTest.MultipleEntriesTracked
+[ OK ] AuditLoggerTest.IntegrityVerificationPasses
+[ OK ] AuditLoggerTest.EmptyChainVerifies
+[ OK ] AuditLoggerTest.QueryEntriesReturnsAll
+[ OK ] AuditLoggerTest.ExportAuditLogCreatesFile
+[----------] 14 tests from MitreMapperTest
+[ OK ] MitreMapperTest.InitializesWithMappings
+[ OK ] MitreMapperTest.MapsTempExecutionRule
+... (more tests)
+[==========] 30 passed in 0.234s
+```
+
+### Configuration
+
+Configure compliance settings in `config/config.yaml`:
+
+```yaml
+compliance:
+  # Audit logging
+  audit_log:
+    enabled: true
+    # Change this key in production!
+    hmac_key: "cortex-edr-default-hmac-key-change-in-production"
+
+  # Report output directory
+  reporting:
+    output_dir: reports/
+
+  # Forensics export settings
+  forensics:
+    output_dir: forensics/
+    include_quarantine_files: true  # Copy quarantined samples to export
 ```
 
 ---

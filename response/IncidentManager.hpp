@@ -11,6 +11,9 @@
 
 namespace cortex {
 
+// Forward declare DatabaseManager to avoid circular includes
+class DatabaseManager;
+
 enum class IncidentState {
     NEW,
     INVESTIGATING,
@@ -74,6 +77,8 @@ public:
     ~IncidentManager();
 
     void Initialize(RiskScorer* risk_scorer, const std::string& incidents_dir = "incidents");
+    void SetDatabaseManager(DatabaseManager* db);
+    void LoadFromDatabase();
     void Start();
     void Stop();
 
@@ -116,6 +121,7 @@ private:
     std::unordered_map<std::string, Incident> incidents_;
     std::unordered_map<uint32_t, std::string> pid_to_incident_;
     RiskScorer* risk_scorer_{nullptr};
+    DatabaseManager* database_{nullptr};
     std::string incidents_dir_;
 
     mutable std::mutex mutex_;

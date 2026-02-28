@@ -1,7 +1,10 @@
 #include "EDRBridge.hpp"
+#include "IPCWorker.hpp"
 #include <QStandardPaths>
 #include <QCoreApplication>
 #include <QRandomGenerator>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <algorithm>
 #include <chrono>
 
@@ -145,19 +148,21 @@ EDRBridge::EDRBridge(QObject* parent)
     : QObject(parent)
 {
     initializeBackendConnection();
-
-    // Poll backend status every 5 seconds
-    statusTimer_ = new QTimer(this);
-    connect(statusTimer_, &QTimer::timeout, this, [this]() {
-        // Could poll real backend status here
-    });
-    statusTimer_->start(5000);
-
     addLogEntry("System", "CortexEDR GUI initialized", "", "Info");
 }
 
 EDRBridge::~EDRBridge()
 {
+    // Stop IPC thread
+    if (ipcThread_ && ipcThread_->isRunning()) {
+        if (ipcWorker_) {
+            QMetaObject::invokeMethod(ipcWorker_, &IPCWorker::stopConnection, Qt::QueuedConnection);
+        }
+        ipcThread_->quit();
+        ipcThread_->wait(3000);
+    }
+
+    // Stop scan thread
     if (scanThread_ && scanThread_->isRunning()) {
         if (scanWorker_) scanWorker_->cancel();
         scanThread_->quit();
@@ -167,8 +172,21 @@ EDRBridge::~EDRBridge()
 
 void EDRBridge::initializeBackendConnection()
 {
-    addLogEntry("System", "Backend bridge initialized", "", "Info");
     loadQuarantineEntries();
+
+    // Start IPC worker on a dedicated thread (Phase 4)
+    ipcThread_ = new QThread(this);
+    ipcWorker_ = new IPCWorker();
+    ipcWorker_->moveToThread(ipcThread_);
+
+    connect(ipcThread_, &QThread::started, ipcWorker_, &IPCWorker::startConnection);
+    connect(ipcWorker_, &IPCWorker::eventReceived, this, &EDRBridge::onPipeEventReceived);
+    connect(ipcWorker_, &IPCWorker::statusUpdated, this, &EDRBridge::onSharedStatusUpdated);
+    connect(ipcWorker_, &IPCWorker::connectionStateChanged, this, &EDRBridge::onBackendConnectionChanged);
+    connect(ipcThread_, &QThread::finished, ipcWorker_, &QObject::deleteLater);
+
+    ipcThread_->start();
+    addLogEntry("System", "Backend IPC bridge started", "", "Info");
 }
 
 QString EDRBridge::systemHealthStatus() const
@@ -491,14 +509,87 @@ void EDRBridge::updateDefinitions()
     });
 }
 
+// ─── IPC Handlers (Phase 4) ──────────────────────────────────────────────────
+
+void EDRBridge::onPipeEventReceived(const QString& jsonLine)
+{
+    QJsonDocument doc = QJsonDocument::fromJson(jsonLine.toUtf8());
+    if (!doc.isObject()) return;
+
+    QJsonObject obj = doc.object();
+    QString eventType = obj.value("event_type").toString();
+    QString processName = obj.value("process_name").toString();
+    int pid = obj.value("pid").toInt();
+    int riskScore = obj.value("risk_score").toInt();
+
+    // Map engine event types to UI log categories
+    QString logType = "Info";
+    QString severity = "Info";
+
+    if (eventType.contains("RISK_THRESHOLD") || riskScore >= 60) {
+        logType = "Threat";
+        severity = "Critical";
+        totalThreats_++;
+        emit threatCountChanged(totalThreats_);
+        emit threatNotification(
+            QString("High Risk: %1 (PID %2, Score %3)").arg(processName).arg(pid).arg(riskScore),
+            processName
+        );
+    } else if (eventType.contains("CONTAINMENT") || eventType.contains("INCIDENT")) {
+        logType = "System";
+        severity = "Warning";
+    } else {
+        logType = "System";
+    }
+
+    QString details = QString("[%1] PID=%2 %3").arg(eventType).arg(pid).arg(processName);
+    if (riskScore > 0) {
+        details += QString(" (risk=%1)").arg(riskScore);
+    }
+
+    addLogEntry(logType, details, "", severity);
+}
+
+void EDRBridge::onSharedStatusUpdated(bool protectionActive, int activeIncidents,
+                                       int totalIncidents, int totalEvents, int highestRisk,
+                                       bool procMon, bool fileMon, bool netMon, bool regMon)
+{
+    (void)totalEvents;
+    (void)highestRisk;
+
+    bool wasActive = protectionActive_;
+    protectionActive_ = protectionActive;
+    activeIncidents_ = activeIncidents;
+    totalIncidents_ = totalIncidents;
+    processMonitorActive_ = procMon;
+    registryMonitorActive_ = regMon;
+    fileSystemHookActive_ = fileMon;
+    networkMonitorActive_ = netMon;
+
+    if (wasActive != protectionActive) {
+        emit protectionStatusChanged(protectionActive);
+    }
+}
+
+void EDRBridge::onBackendConnectionChanged(bool connected)
+{
+    backendConnected_ = connected;
+    if (connected) {
+        addLogEntry("System", "Connected to CortexEDR engine", "", "Info");
+    } else {
+        addLogEntry("System", "Disconnected from CortexEDR engine", "", "Warning");
+    }
+    emit backendConnectionChanged(connected);
+}
+
 // ─── Incident Info ───────────────────────────────────────────────────────────
 
 int EDRBridge::activeIncidentCount() const
 {
-    return totalThreats_;
+    return activeIncidents_;
 }
 
 int EDRBridge::totalIncidentCount() const
 {
-    return totalThreats_;
+    return totalIncidents_;
 }

@@ -109,9 +109,30 @@ telemetry:
   enabled: true
   export_path: telemetry/events.ndjson
 
-  # Enable named pipe for external consumption
-  enable_named_pipe: false
+  # Enable named pipe for GUI + SIEM consumption
+  enable_named_pipe: true
   named_pipe_name: \\.\pipe\CortexEDR
+
+# Persistence (Phase 4: SQLite + JSON)
+persistence:
+  database_path: data/cortex.db
+
+# IPC (Phase 4: Shared Memory for GUI status polling)
+ipc:
+  shared_memory_name: Local\CortexEDR_SharedStatus
+  named_pipe_name: \\.\pipe\CortexEDR
+
+# Compliance & Reporting (Phase 5)
+compliance:
+  audit_log:
+    enabled: true
+    # HMAC key for tamper-proof audit chain (change in production!)
+    hmac_key: "cortex-edr-default-hmac-key-change-in-production"
+  reporting:
+    output_dir: reports/
+  forensics:
+    output_dir: forensics/
+    include_quarantine_files: true
 
 # Dashboard settings
 dashboard:

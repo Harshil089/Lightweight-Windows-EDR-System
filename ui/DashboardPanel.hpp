@@ -48,4 +48,8 @@ private:
     QFrame* healthCard_;
 
     QTimer* refreshTimer_;
+
+    // Backend connection indicator (Phase 4)
+    QFrame* connectionIndicator_;
+    QLabel* connectionLabel_;
 };

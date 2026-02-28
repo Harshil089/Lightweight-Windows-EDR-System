@@ -17,6 +17,7 @@ find_package(nlohmann_json CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
 
 # Core library
 add_library(cortex_core STATIC
@@ -72,6 +73,20 @@ target_link_libraries(cortex_engine PUBLIC
     yaml-cpp::yaml-cpp
 )
 
+# Persistence library (Phase 4: SQLite)
+add_library(cortex_persistence STATIC
+    persistence/DatabaseManager.cpp
+    persistence/DatabaseManager.hpp
+)
+
+target_include_directories(cortex_persistence PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(cortex_persistence PUBLIC
+    cortex_core
+    cortex_engine
+    nlohmann_json::nlohmann_json
+    unofficial::sqlite3::sqlite3
+)
+
 # Response library
 add_library(cortex_response STATIC
     response/ContainmentManager.cpp
@@ -84,10 +99,33 @@ target_include_directories(cortex_response PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(cortex_response PUBLIC
     cortex_core
     cortex_engine
+    cortex_persistence
     nlohmann_json::nlohmann_json
     OpenSSL::Crypto
     ole32
     oleaut32
+)
+
+# Compliance library (Phase 5: Audit, MITRE, Compliance Reports, Forensics)
+add_library(cortex_compliance STATIC
+    compliance/AuditLogger.cpp
+    compliance/AuditLogger.hpp
+    compliance/MitreMapper.cpp
+    compliance/MitreMapper.hpp
+    compliance/ComplianceReporter.cpp
+    compliance/ComplianceReporter.hpp
+    compliance/ForensicsExporter.cpp
+    compliance/ForensicsExporter.hpp
+)
+
+target_include_directories(cortex_compliance PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(cortex_compliance PUBLIC
+    cortex_core
+    cortex_engine
+    cortex_persistence
+    cortex_response
+    nlohmann_json::nlohmann_json
+    OpenSSL::Crypto
 )
 
 # Telemetry library
@@ -100,8 +138,22 @@ target_include_directories(cortex_telemetry PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(cortex_telemetry PUBLIC
     cortex_core
     cortex_engine
+    cortex_persistence
     nlohmann_json::nlohmann_json
 )
+
+# IPC library (Phase 4: Named Pipe + Shared Memory, pure Windows API)
+add_library(cortex_ipc STATIC
+    ipc/SharedMemoryServer.cpp
+    ipc/SharedMemoryServer.hpp
+    ipc/SharedMemoryClient.cpp
+    ipc/SharedMemoryClient.hpp
+    ipc/PipeClient.cpp
+    ipc/PipeClient.hpp
+)
+
+target_include_directories(cortex_ipc PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(cortex_ipc PUBLIC cortex_core)
 
 # Main executable (console-based EDR engine)
 add_executable(CortexEDR
@@ -112,8 +164,11 @@ target_link_libraries(CortexEDR PRIVATE
     cortex_core
     cortex_collectors
     cortex_engine
+    cortex_persistence
     cortex_response
+    cortex_compliance
     cortex_telemetry
+    cortex_ipc
     yaml-cpp::yaml-cpp
     nlohmann_json::nlohmann_json
     ntdll
@@ -141,6 +196,8 @@ if(BUILD_GUI)
         add_library(cortex_gui STATIC
             ui/EDRBridge.cpp
             ui/EDRBridge.hpp
+            ui/IPCWorker.cpp
+            ui/IPCWorker.hpp
             ui/MainWindow.cpp
             ui/MainWindow.hpp
             ui/DashboardPanel.cpp
@@ -168,6 +225,7 @@ if(BUILD_GUI)
             cortex_engine
             cortex_response
             cortex_telemetry
+            cortex_ipc
             Qt6::Core
             Qt6::Gui
             Qt6::Widgets
@@ -183,8 +241,11 @@ if(BUILD_GUI)
             cortex_core
             cortex_collectors
             cortex_engine
+            cortex_persistence
             cortex_response
+            cortex_compliance
             cortex_telemetry
+            cortex_ipc
             yaml-cpp::yaml-cpp
             nlohmann_json::nlohmann_json
             ntdll
@@ -220,12 +281,21 @@ add_executable(cortex_tests
     tests/test_threadpool.cpp
     tests/test_riskscorer.cpp
     tests/test_incidentmanager.cpp
+    tests/test_database.cpp
+    tests/test_ipc_sharedmem.cpp
+    tests/test_ipc_pipe.cpp
+    tests/test_e2e_bridge.cpp
+    tests/test_compliance.cpp
 )
 
 target_link_libraries(cortex_tests PRIVATE
     cortex_core
     cortex_engine
+    cortex_persistence
     cortex_response
+    cortex_compliance
+    cortex_telemetry
+    cortex_ipc
     GTest::gtest
     GTest::gtest_main
 )

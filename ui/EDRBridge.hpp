@@ -12,6 +12,8 @@
 #include <QFile>
 #include <atomic>
 
+class IPCWorker;
+
 // Log entry for the UI log viewer
 struct LogEntry {
     QDateTime timestamp;
@@ -109,6 +111,9 @@ public:
     int activeIncidentCount() const;
     int totalIncidentCount() const;
 
+    // Backend connection (Phase 4)
+    bool isBackendConnected() const { return backendConnected_; }
+
 public slots:
     // Protection control
     void enableRealTimeProtection();
@@ -144,9 +149,15 @@ signals:
     void threatNotification(const QString& threatName, const QString& filePath);
     void definitionsUpdated(bool success);
     void settingsChanged();
+    void backendConnectionChanged(bool connected);
 
 private slots:
     void onScanFinished(int totalFiles, int threatsFound);
+    void onPipeEventReceived(const QString& jsonLine);
+    void onSharedStatusUpdated(bool protectionActive, int activeIncidents,
+                               int totalIncidents, int totalEvents, int highestRisk,
+                               bool procMon, bool fileMon, bool netMon, bool regMon);
+    void onBackendConnectionChanged(bool connected);
 
 private:
     void addLogEntry(const QString& type, const QString& details,
@@ -168,6 +179,15 @@ private:
     bool registryMonitorActive_{false};
     bool fileSystemHookActive_{false};
     bool networkMonitorActive_{false};
+
+    // Backend connection state (Phase 4)
+    bool backendConnected_{false};
+    int activeIncidents_{0};
+    int totalIncidents_{0};
+
+    // IPC thread (Phase 4)
+    QThread* ipcThread_{nullptr};
+    IPCWorker* ipcWorker_{nullptr};
 
     // Scan thread
     QThread* scanThread_{nullptr};

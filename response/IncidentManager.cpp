@@ -1,4 +1,5 @@
 #include "response/IncidentManager.hpp"
+#include "persistence/DatabaseManager.hpp"
 #include "core/Logger.hpp"
 #include <nlohmann/json.hpp>
 #include <openssl/rand.h>
@@ -27,6 +28,24 @@ void IncidentManager::Initialize(RiskScorer* risk_scorer, const std::string& inc
     } catch (const std::exception& ex) {
         LOG_ERROR("Failed to create incidents directory: {}", ex.what());
     }
+}
+
+void IncidentManager::SetDatabaseManager(DatabaseManager* db) {
+    database_ = db;
+}
+
+void IncidentManager::LoadFromDatabase() {
+    if (!database_) return;
+
+    std::lock_guard<std::mutex> lock(mutex_);
+    auto loaded = database_->LoadAllIncidents();
+    for (auto& incident : loaded) {
+        std::string uuid = incident.uuid;
+        uint32_t pid = incident.pid;
+        incidents_[uuid] = std::move(incident);
+        pid_to_incident_[pid] = uuid;
+    }
+    LOG_INFO("IncidentManager: Loaded {} incidents from database", loaded.size());
 }
 
 void IncidentManager::Start() {
@@ -415,6 +434,11 @@ void IncidentManager::SerializeIncident(const Incident& incident) {
             LOG_DEBUG("Serialized incident {} to {}", incident.uuid, filepath);
         } else {
             LOG_ERROR("Failed to open {} for writing", filepath);
+        }
+
+        // Also persist to SQLite if available
+        if (database_) {
+            database_->UpsertIncident(incident);
         }
     } catch (const std::exception& ex) {
         LOG_ERROR("Failed to serialize incident {}: {}", incident.uuid, ex.what());

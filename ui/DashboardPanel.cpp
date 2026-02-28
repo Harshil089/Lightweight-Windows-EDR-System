@@ -31,8 +31,21 @@ void DashboardPanel::setupUI()
     QFont subFont("Segoe UI", 12);
     subtitle->setFont(subFont);
 
+    // Backend connection indicator (Phase 4)
+    QHBoxLayout* connRow = new QHBoxLayout();
+    connectionIndicator_ = new QFrame();
+    connectionIndicator_->setFixedSize(10, 10);
+    connectionIndicator_->setStyleSheet("background-color: #F44336; border-radius: 5px;");
+    connectionLabel_ = new QLabel("Engine: Disconnected");
+    connectionLabel_->setFont(subFont);
+    connectionLabel_->setStyleSheet("color: #8B949E;");
+    connRow->addWidget(connectionIndicator_);
+    connRow->addWidget(connectionLabel_);
+    connRow->addStretch();
+
     layout->addWidget(title);
     layout->addWidget(subtitle);
+    layout->addLayout(connRow);
     layout->addSpacing(8);
 
     // Status cards grid
@@ -187,6 +200,16 @@ void DashboardPanel::setupUI()
 
 void DashboardPanel::refreshStatus()
 {
+    // Backend connection status (Phase 4)
+    bool connected = bridge_->isBackendConnected();
+    connectionIndicator_->setStyleSheet(
+        connected
+        ? "background-color: #4CAF50; border-radius: 5px;"
+        : "background-color: #F44336; border-radius: 5px;"
+    );
+    connectionLabel_->setText(connected ? "Engine: Connected" : "Engine: Disconnected");
+    connectionLabel_->setStyleSheet(connected ? "color: #4CAF50;" : "color: #8B949E;");
+
     // Protection status
     bool active = bridge_->isProtectionActive();
     protectionStatusLabel_->setText(active ? "Active" : "Inactive");
