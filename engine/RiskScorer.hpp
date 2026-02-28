@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/EventBus.hpp"
+#include <shared_mutex>
 #include <string>
 #include <unordered_map>
 
@@ -35,7 +36,7 @@ private:
     RiskLevel CalculateLevel(uint32_t score) const;
     void AddRisk(uint32_t pid, const std::string& reason, uint32_t points);
 
-    mutable std::mutex mutex_;
+    mutable std::shared_mutex mutex_;
     std::unordered_map<uint32_t, RiskScore> process_scores_;
 
     uint32_t threshold_low_{30};

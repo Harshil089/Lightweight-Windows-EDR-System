@@ -1,194 +1,148 @@
 # CortexEDR Quick Start Guide
 
-This guide will get CortexEDR running on your Windows system in under 10 minutes.
+This guide will get CortexEDR running on your Windows system in under 15 minutes.
+You can run the **console engine** (no dependencies beyond vcpkg), the **Qt6 GUI**, or both.
 
 ## Prerequisites Checklist
 
 - [ ] Windows 10 1903+ or Windows 11 (x64)
-- [ ] Visual Studio 2022 with C++ Desktop Development workload
+- [ ] Visual Studio 2022 with "Desktop development with C++" workload
 - [ ] Administrator access to your system
-- [ ] At least 2 GB free disk space
+- [ ] At least 3 GB free disk space (more if installing Qt6)
+- [ ] CMake 3.20+ (included with Visual Studio 2022 or install separately)
 
-## Step-by-Step Installation
+---
+
+## Part 1 — Console Engine Setup
 
 ### 1. Install vcpkg Package Manager
 
 Open PowerShell as Administrator:
 
 ```powershell
-# Clone vcpkg
-cd C:\
-git clone https://github.com/Microsoft/vcpkg.git
-cd vcpkg
+# Clone vcpkg to C:\vcpkg
+git clone https://github.com/Microsoft/vcpkg.git C:\vcpkg
+cd C:\vcpkg
 
-# Bootstrap vcpkg
+# Bootstrap and integrate with Visual Studio
 .\bootstrap-vcpkg.bat
-
-# Integrate with Visual Studio
 .\vcpkg integrate install
 
-# Set environment variable for easier access
+# Persist the root path for all future terminals
 setx VCPKG_ROOT "C:\vcpkg" /M
 ```
 
-**Note**: You'll need to close and reopen PowerShell after setting the environment variable.
+> Close and reopen PowerShell after setting the environment variable.
 
-### 2. Install Dependencies
-
-Still in PowerShell as Administrator:
+### 2. Install Backend Dependencies
 
 ```powershell
 cd C:\vcpkg
 
-# Install required packages (this may take 10-15 minutes)
-.\vcpkg install yaml-cpp:x64-windows
-.\vcpkg install nlohmann-json:x64-windows
-.\vcpkg install spdlog:x64-windows
-.\vcpkg install gtest:x64-windows
-.\vcpkg install openssl:x64-windows
+# Install all required packages (10–15 minutes)
+.\vcpkg install yaml-cpp:x64-windows `
+               nlohmann-json:x64-windows `
+               spdlog:x64-windows `
+               gtest:x64-windows `
+               openssl:x64-windows
 ```
 
 ### 3. Clone CortexEDR
 
 ```powershell
-cd C:\
-git clone https://github.com/yourusername/CortexEDR.git
-cd CortexEDR
+git clone https://github.com/yourusername/CortexEDR.git C:\Lightweight-Windows-EDR-System
+cd C:\Lightweight-Windows-EDR-System
 ```
 
-### 4. Build CortexEDR
-
-Option A - Using the build script:
+### 4. Build the Console Engine
 
 ```powershell
-.\build.bat
-```
-
-Option B - Manual CMake build:
-
-```powershell
-# Configure
-cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake
+# Configure (disable GUI to skip the Qt6 requirement for now)
+cmake -B build -S . `
+  -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake `
+  -DBUILD_GUI=OFF
 
 # Build
 cmake --build build --config Release
-
-# Run tests
-cd build
-ctest -C Release
-cd ..
 ```
 
-### 5. Run CortexEDR
+### 5. Run the Console Engine
 
-**IMPORTANT**: CortexEDR must be run as Administrator for full functionality.
-ETW process monitoring uses the Windows NT Kernel Logger session, which requires elevated privileges.
+> **IMPORTANT**: The console engine must run as Administrator for ETW process monitoring.
 
 ```powershell
-# Open PowerShell as Administrator (right-click → "Run as Administrator")
+# Right-click PowerShell → "Run as Administrator"
 cd C:\Lightweight-Windows-EDR-System
-
-# Run CortexEDR
 .\build\Release\CortexEDR.exe
 ```
 
-You should see output like:
+Expected startup output:
 
 ```
-[2026-02-23 09:19:31] [info] [CortexEDR] ==========================================================
-[2026-02-23 09:19:31] [info] [CortexEDR]   CortexEDR - Windows Endpoint Detection & Response
-[2026-02-23 09:19:31] [info] [CortexEDR]   Phase 1: Core Infrastructure & Collectors
-[2026-02-23 09:19:31] [info] [CortexEDR] ==========================================================
-[2026-02-23 09:19:31] [info] [CortexEDR] Initializing CortexEDR...
-[2026-02-23 09:19:31] [info] [CortexEDR] Event subscriptions configured
-[2026-02-23 09:19:31] [info] [CortexEDR] Starting CortexEDR collectors...
-[2026-02-23 09:19:31] [info] [CortexEDR] Starting ProcessMonitor with ETW
-[2026-02-23 09:19:31] [info] [CortexEDR] Starting FileMonitor for 2 paths
-[2026-02-23 09:19:31] [info] [CortexEDR] Starting NetworkMonitor with 2s poll interval
-[2026-02-23 09:19:31] [info] [CortexEDR] Starting RegistryMonitor
-[2026-02-23 09:19:31] [info] [CortexEDR] CortexEDR is now running. Press Ctrl+C to stop.
+[2026-02-28 09:00:00] [info] [CortexEDR] ==========================================================
+[2026-02-28 09:00:00] [info] [CortexEDR]   CortexEDR - Windows Endpoint Detection & Response
+[2026-02-28 09:00:00] [info] [CortexEDR] ==========================================================
+[2026-02-28 09:00:00] [info] [CortexEDR] Initializing CortexEDR...
+[2026-02-28 09:00:00] [info] [CortexEDR] Event subscriptions configured
+[2026-02-28 09:00:00] [info] [CortexEDR] Starting CortexEDR collectors...
+[2026-02-28 09:00:00] [info] [CortexEDR] Starting ProcessMonitor with ETW
+[2026-02-28 09:00:00] [info] [CortexEDR] Starting FileMonitor for 2 paths
+[2026-02-28 09:00:00] [info] [CortexEDR] Starting NetworkMonitor with 2s poll interval
+[2026-02-28 09:00:00] [info] [CortexEDR] Starting RegistryMonitor
+[2026-02-28 09:00:00] [info] [CortexEDR] CortexEDR is now running. Press Ctrl+C to stop.
 ```
 
-### 6. Verify It's Working
+### 6. Verify Monitoring Is Active
 
-Open a **second** PowerShell window (does not need to be elevated) and run:
+Open a **second** PowerShell window (no elevation needed):
 
 ```powershell
-# Trigger process monitoring — launch any process
+# Trigger process monitoring
 notepad.exe
 
-# Trigger file monitoring (watches C:\Windows\System32 and C:\Users by default)
+# Trigger file monitoring (watches C:\Users and C:\Windows\System32 by default)
 New-Item -Path "$env:USERPROFILE\Documents\test_edr.txt" -ItemType File -Force
 
-# Trigger network monitoring — connect to an external host
+# Trigger network monitoring
 Test-NetConnection -ComputerName 8.8.8.8 -Port 443
 
 # Trigger registry persistence monitoring
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v EDRTest /d "C:\test.exe" /f
-# Clean up after testing:
+# Clean up after testing
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v EDRTest /f
 ```
 
-Watch the CortexEDR console in the Administrator window — you should see event log lines appear in real time.
+Watch the first window — events should appear in real time.
 
 ### 7. View Logs
 
-CortexEDR writes structured logs to `logs\cortex.log` relative to the working directory:
+CortexEDR writes structured logs to `logs\cortex.log`:
 
 ```powershell
-# Stream live log output (tail -f equivalent)
+# Stream live output
 Get-Content C:\Lightweight-Windows-EDR-System\logs\cortex.log -Wait -Tail 30
 
-# Show only warnings and above (error, critical)
+# Show only warnings and above
 Get-Content C:\Lightweight-Windows-EDR-System\logs\cortex.log |
     Where-Object { $_ -match '\[(warn|error|critical)\]' }
 
-# Search for high-risk process detections
+# Search for high-risk detections
 Select-String -Path C:\Lightweight-Windows-EDR-System\logs\cortex.log -Pattern "HIGH RISK"
-
-# Show all events for a specific PID
-Select-String -Path C:\Lightweight-Windows-EDR-System\logs\cortex.log -Pattern "PID=1234"
 ```
 
-### 8. Inspect the Active ETW Kernel Session
-
-While CortexEDR is running, you can verify the NT Kernel Logger session is active:
+### 8. Inspect the Active ETW Session
 
 ```powershell
-# List all active ETW trace sessions — look for "NT Kernel Logger"
+# List all active ETW trace sessions (look for "NT Kernel Logger")
 logman query -ets
 
-# Show details of the NT Kernel Logger session specifically
+# Show NT Kernel Logger details
 logman query "NT Kernel Logger" -ets
 ```
 
-## Configuration
+### 9. Stop the Console Engine
 
-Edit `config/config.yaml` to customize CortexEDR behavior:
-
-```yaml
-# Example: Change risk thresholds
-risk_scoring:
-  thresholds:
-    low: 30
-    medium: 60
-    high: 80
-    critical: 100
-
-# Example: Add more file monitoring paths
-file_monitoring:
-  watch_paths:
-    - C:\Users
-    - C:\Windows\System32
-    - C:\ProgramData
-    - D:\ImportantData  # Add your custom path here
-```
-
-After editing, restart CortexEDR to apply changes.
-
-## Stopping CortexEDR
-
-Press `Ctrl+C` in the CortexEDR console window. You should see:
+Press `Ctrl+C`. Expected shutdown output:
 
 ```
 [info] Received shutdown signal
@@ -201,142 +155,237 @@ Press `Ctrl+C` in the CortexEDR console window. You should see:
 [info] CortexEDR shutdown complete
 ```
 
-If the process is killed without a clean shutdown (e.g. Task Manager), the NT Kernel Logger
-session may remain open. Release it manually before restarting:
+If the process is killed without a clean shutdown, release the ETW session manually:
 
 ```powershell
 logman stop "NT Kernel Logger" -ets
 ```
 
-## Troubleshooting
+---
 
-### "Access Denied" or "Privilege Error"
+## Part 2 — Qt6 GUI Setup
 
-**Solution**: Make sure you're running as Administrator. Right-click PowerShell → "Run as Administrator"
+### 1. Install Qt6
 
-### "Failed to start ProcessMonitor" (error 87)
+Download the Qt Online Installer from [qt.io/download](https://www.qt.io/download).
 
-**Cause**: ETW process monitoring uses the Windows NT Kernel Logger, which requires Administrator
-privileges. Error 87 (`ERROR_INVALID_PARAMETER`) means the session could not be opened.
+During installation select:
+- **Qt 6.x** → **MSVC 2022 64-bit**
 
-**Solution**:
+Note the install path (default: `C:\Qt`).
 
-```powershell
-# 1. Confirm you are running as Administrator
-whoami /priv | Select-String "SeDebugPrivilege"
-
-# 2. Stop any existing NT Kernel Logger session that may be held by another tool
-logman stop "NT Kernel Logger" -ets
-
-# 3. Restart CortexEDR
-.\build\Release\CortexEDR.exe
-```
-
-**Note**: Only one process can hold the NT Kernel Logger session at a time. Tools like
-PerfMon, xperf, or WPR may also hold it. Stop those tools before starting CortexEDR.
-
-### "vcpkg: command not found"
-
-**Solution**: Make sure you set the VCPKG_ROOT environment variable and reopened PowerShell:
+### 2. Build with GUI Enabled
 
 ```powershell
-setx VCPKG_ROOT "C:\vcpkg" /M
-# Close and reopen PowerShell
+cd C:\Lightweight-Windows-EDR-System
+
+cmake -B build -S . `
+  -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake `
+  -DCMAKE_PREFIX_PATH="C:\Qt\6.x.x\msvc2022_64" `
+  -DBUILD_GUI=ON
+
+cmake --build build --config Release
 ```
 
-### Build Fails with "Cannot find yaml-cpp"
+> Replace `6.x.x` with your installed Qt version (e.g. `6.7.2`).
+> If Qt6 is not found, the build continues without the GUI target and prints:
+> `Qt6 not found - GUI target disabled`
 
-**Solution**: Verify vcpkg integration:
+### 3. Deploy Qt Runtime DLLs
+
+The first time you run the GUI outside of Qt Creator, run `windeployqt` to copy the required Qt DLLs next to the executable:
 
 ```powershell
-cd C:\vcpkg
-.\vcpkg integrate install
-.\vcpkg list  # Should show installed packages
+# Replace with your Qt bin path
+C:\Qt\6.x.x\msvc2022_64\bin\windeployqt.exe .\build\Release\CortexEDR_GUI.exe
 ```
 
-### High CPU Usage
+### 4. Run the GUI
 
-**Cause**: File monitoring on high-activity directories can generate many events.
+```powershell
+.\build\Release\CortexEDR_GUI.exe
+```
 
-**Solution**: Edit `config/config.yaml` and reduce monitored paths:
+The GUI does **not** require Administrator privileges to launch. Real-time protection and ETW monitoring features require running the console engine (`CortexEDR.exe`) separately with elevation.
+
+### GUI Navigation
+
+| Panel | What it does |
+|-------|-------------|
+| Dashboard | Live protection status, threat counter, system health, quick scan shortcut |
+| Quick Scan | Targeted scan of common locations with progress and results log |
+| Full System Scan | Full drive scan with estimated time remaining, pause/resume |
+| Real-Time Protection | Master on/off toggle + status of each monitor (Process, Registry, FileSystem, Network) |
+| Quarantine | View, restore, or permanently delete quarantined files |
+| Logs | Filterable event log (All / Threats / System Events / Scan Logs) |
+| Settings | Scan sensitivity, heuristic analysis, exclusion folders, definition updates |
+| About | Version and engine component details |
+
+The application minimizes to the system tray when the window is closed. A tray notification appears when a threat is detected.
+
+---
+
+## Part 3 — Run Tests
+
+```powershell
+cd build
+ctest -C Release --verbose
+
+# Or run specific test suites directly
+.\Release\cortex_tests.exe --gtest_filter=EventBusTest.*
+.\Release\cortex_tests.exe --gtest_filter=RiskScorerTest.*
+.\Release\cortex_tests.exe --gtest_filter=IncidentManagerTest.*
+```
+
+---
+
+## Configuration
+
+Edit `config/config.yaml` to tune CortexEDR behavior:
 
 ```yaml
- file_monitoring:
+# Risk scoring thresholds
+risk_scoring:
+  thresholds:
+    low: 30
+    medium: 60
+    high: 80
+    critical: 100
+
+# Paths to monitor for file activity
+file_monitoring:
   watch_paths:
-    - C:\Windows\System32  # Keep only critical paths
+    - C:\Users
+    - C:\Windows\System32
+    - C:\ProgramData        # Add custom paths here
+
+# Network monitoring
+network_monitoring:
+  poll_interval_seconds: 2
+  suspicious_ports:
+    - 4444   # Metasploit
+    - 1337   # Elite
+    - 6667   # IRC
 ```
 
-### No Events Appearing
+Restart the console engine after any config changes.
 
-**Checks**:
+---
 
-1. Verify CortexEDR has administrator privileges
-2. Check `logs/cortex.log` for errors
-3. Ensure you're generating actual system activity (create processes, files, etc.)
-4. Verify risk thresholds aren't filtering everything out
-
-## Testing CortexEDR Detection
+## Detection Testing Scenarios
 
 ### Test 1: Suspicious Process from Temp
 
 ```powershell
-# Copy a legitimate executable to temp
-copy C:\Windows\System32\notepad.exe C:\Users\Public\temp.exe
-
-# Run it (should trigger "process_from_temp" risk signal)
-C:\Users\Public\temp.exe
+copy C:\Windows\System32\notepad.exe C:\Users\Public\temp_payload.exe
+C:\Users\Public\temp_payload.exe
+# Expect: "process_from_temp" risk signal in logs
 ```
 
 ### Test 2: Registry Persistence
 
 ```powershell
-# Modify Run key (should trigger "registry_persistence" signal)
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v TestEntry /d "C:\test.exe" /f
-
-# Clean up
+# Expect: "registry_persistence" signal in logs
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v TestEntry /f
 ```
 
 ### Test 3: External Network Connection
 
 ```powershell
-# Connect to external IP (should trigger "external_connection" signal)
 Test-NetConnection -ComputerName 8.8.8.8 -Port 80
+# Expect: "external_connection" signal in logs
 ```
 
-### Test 4: Combine Multiple Signals
+### Test 4: Multi-Signal Risk Accumulation
 
 ```powershell
-# This should accumulate risk score across multiple signals
 copy C:\Windows\System32\curl.exe C:\Temp\suspicious.exe
 C:\Temp\suspicious.exe https://example.com
+# Expect: accumulated HIGH RISK score in logs
 ```
-
-Check CortexEDR logs for "HIGH RISK DETECTED" messages.
-
-## Next Steps
-
-- **Explore the code**: Start with `main.cpp` and follow the architecture
-- **Read the docs**: See `ARCHITECTURE.md` for detailed system design
-- **Customize detection**: Edit `config/config.yaml` to tune for your environment
-- **Add new rules**: Implement custom risk signals in `engine/RiskScorer.cpp`
-- **Wait for Phase 2**: Next release will add rule engine and automated containment
-
-## Getting Help
-
-- Check `README.md` for architecture overview
-- Read `ARCHITECTURE.md` for technical details
-- Review unit tests in `tests/` for usage examples
-- Open an issue on GitHub for bugs or questions
-
-## Security Warning
-
-⚠️ **CortexEDR is a prototype for educational purposes**
-
-- Do NOT deploy in production without security review
-- Do NOT rely on it for real threat protection
-- It is designed for portfolio demonstration and learning
 
 ---
 
-**Congratulations!** You now have CortexEDR running on your system. Happy threat hunting! 🛡️
+## Troubleshooting
+
+### "Access Denied" or privilege errors
+
+Ensure you are running the console engine as Administrator:
+
+```powershell
+whoami /priv | Select-String "SeDebugPrivilege"
+```
+
+### "Failed to start ProcessMonitor" (error 87)
+
+The NT Kernel Logger session may be held by another tool (PerfMon, xperf, WPR):
+
+```powershell
+logman stop "NT Kernel Logger" -ets
+.\build\Release\CortexEDR.exe
+```
+
+### Qt6 GUI won't start — missing DLLs
+
+Run `windeployqt` as shown in Part 2, Step 3.
+
+### "Qt6 not found" during CMake configure
+
+Verify your `CMAKE_PREFIX_PATH` points to the MSVC 64-bit Qt kit:
+
+```powershell
+cmake -B build -S . `
+  -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake `
+  -DCMAKE_PREFIX_PATH="C:\Qt\6.7.2\msvc2022_64"
+```
+
+### "Cannot find yaml-cpp" during build
+
+Re-run vcpkg integration:
+
+```powershell
+cd C:\vcpkg
+.\vcpkg integrate install
+.\vcpkg list
+```
+
+### High CPU usage
+
+Reduce the number of watched file paths in `config/config.yaml`:
+
+```yaml
+file_monitoring:
+  watch_paths:
+    - C:\Windows\System32   # Keep only the most critical paths
+```
+
+### No events appearing in the GUI
+
+The GUI's scan panels operate independently of the console engine. To see live backend events, also run `CortexEDR.exe` (as Administrator) and watch `logs\cortex.log`.
+
+---
+
+## Next Steps
+
+- **Explore the code**: Start with `main.cpp` (console) or `main_gui.cpp` (GUI) and follow the architecture
+- **Read the docs**: See `ARCHITECTURE.md` for detailed system design
+- **Customize detection**: Edit `config/rules.yaml` to add custom IOC rules
+- **Tune thresholds**: Adjust `config/config.yaml` for your environment
+- **Review tests**: See `tests/` for usage examples of each component
+
+## Getting Help
+
+- `README.md` — Architecture overview and feature list
+- `ARCHITECTURE.md` — Deep-dive technical design
+- `tests/` — Usage examples for each subsystem
+- GitHub Issues — Bug reports and questions
+
+---
+
+> **Security Warning**: CortexEDR is an educational prototype. Do NOT deploy in production
+> without a thorough security review. It is designed for portfolio demonstration and learning.
+
+---
+
+**You're all set.** Run the console engine to monitor threats in real time, or launch the GUI for a full dashboard experience.

@@ -92,7 +92,7 @@ void BehaviorCorrelator::Stop() {
 }
 
 size_t BehaviorCorrelator::GetTimelineCount() const {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::shared_lock<std::shared_mutex> lock(mutex_);
     return process_timelines_.size();
 }
 
@@ -101,37 +101,44 @@ size_t BehaviorCorrelator::GetPatternCount() const {
 }
 
 void BehaviorCorrelator::OnEvent(const Event& event) {
-    std::lock_guard<std::mutex> lock(mutex_);
+    ProcessTimeline timeline_copy;
+    bool has_timeline = false;
 
-    uint64_t current_time = GetCurrentTimestamp();
+    {
+        std::unique_lock<std::shared_mutex> lock(mutex_);
 
-    // Handle process termination
-    if (event.type == EventType::PROCESS_TERMINATE) {
-        auto it = process_timelines_.find(event.pid);
-        if (it != process_timelines_.end()) {
-            LOG_DEBUG("Removing timeline for terminated process {}", event.pid);
-            process_timelines_.erase(it);
+        uint64_t current_time = GetCurrentTimestamp();
+
+        // Handle process termination
+        if (event.type == EventType::PROCESS_TERMINATE) {
+            auto it = process_timelines_.find(event.pid);
+            if (it != process_timelines_.end()) {
+                LOG_DEBUG("Removing timeline for terminated process {}", event.pid);
+                process_timelines_.erase(it);
+            }
+            return;
         }
-        return;
+
+        // Add event to process timeline
+        if (event.pid != 0) {
+            AddEventToTimeline(event.pid, event);
+
+            auto it = process_timelines_.find(event.pid);
+            if (it != process_timelines_.end()) {
+                // Cleanup old events while holding the lock
+                CleanupOldEvents(it->second, current_time);
+
+                // Take a snapshot for pattern detection outside the lock
+                timeline_copy = it->second;
+                has_timeline = true;
+            }
+        }
     }
-
-    // Add event to process timeline
-    if (event.pid != 0) {  // Skip events without valid PID
-        AddEventToTimeline(event.pid, event);
-
-        // Get the timeline for this process
-        auto it = process_timelines_.find(event.pid);
-        if (it != process_timelines_.end()) {
-            ProcessTimeline& timeline = it->second;
-
-            // Cleanup old events
-            CleanupOldEvents(timeline, current_time);
-
-            // Run pattern detection
-            DetectDropperPattern(timeline);
-            DetectPersistencePattern(timeline);
-            DetectLateralMovementPattern(timeline);
-        }
+    // Lock released — run O(n²) pattern detection on the copy
+    if (has_timeline) {
+        DetectDropperPattern(timeline_copy);
+        DetectPersistencePattern(timeline_copy);
+        DetectLateralMovementPattern(timeline_copy);
     }
 }
 

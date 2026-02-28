@@ -4,7 +4,7 @@
 #include "engine/RiskScorer.hpp"
 #include <string>
 #include <vector>
-#include <mutex>
+#include <shared_mutex>
 #include <atomic>
 
 namespace cortex {
@@ -46,7 +46,7 @@ private:
 
     std::vector<Rule> rules_;
     RiskScorer* risk_scorer_{nullptr};
-    mutable std::mutex mutex_;
+    mutable std::shared_mutex mutex_;
     std::atomic<bool> running_{false};
     SubscriptionId subscription_id_{0};
 };

@@ -42,6 +42,11 @@ bool RegistryMonitor::Start() {
         {HKEY_CURRENT_USER, L"HKCU"}
     };
 
+    // Pre-reserve to prevent vector reallocation from invalidating raw pointers
+    // passed to monitor threads.
+    size_t max_contexts = roots.size() * (sizeof(MONITORED_KEYS) / sizeof(MONITORED_KEYS[0]));
+    contexts_.reserve(max_contexts);
+
     for (const auto& root_pair : roots) {
         for (const auto& subkey : MONITORED_KEYS) {
             auto context = std::make_unique<WatchContext>();

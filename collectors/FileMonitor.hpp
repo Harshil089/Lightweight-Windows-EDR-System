@@ -5,6 +5,7 @@
 #include "../core/Logger.hpp"
 #include <atomic>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <thread>
 #include <vector>
@@ -44,6 +45,7 @@ private:
     void PublishFileEvent(const FileChange& change);
 
     std::vector<std::wstring> watch_paths_;
+    std::mutex contexts_mutex_;
     std::vector<std::unique_ptr<WatchContext>> contexts_;
     std::vector<std::unique_ptr<std::thread>> monitor_threads_;
     std::atomic<bool> running_{false};

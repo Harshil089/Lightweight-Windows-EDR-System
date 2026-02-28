@@ -36,16 +36,16 @@ std::string WideToUtf8(const std::wstring& wstr) {
 
 namespace cortex {
 
-ProcessMonitor* ProcessMonitor::instance_ = nullptr;
+std::atomic<ProcessMonitor*> ProcessMonitor::instance_{nullptr};
 constexpr wchar_t ProcessMonitor::SESSION_NAME[];
 
 ProcessMonitor::ProcessMonitor() {
-    instance_ = this;
+    instance_.store(this, std::memory_order_release);
 }
 
 ProcessMonitor::~ProcessMonitor() {
     Stop();
-    instance_ = nullptr;
+    instance_.store(nullptr, std::memory_order_release);
 }
 
 bool ProcessMonitor::EnablePrivilege(const wchar_t* privilege) {
@@ -155,8 +155,9 @@ void ProcessMonitor::Stop() {
 }
 
 ULONG WINAPI ProcessMonitor::ProcessTraceCallback(PEVENT_RECORD event_record) {
-    if (instance_) {
-        instance_->HandleProcessEvent(event_record);
+    ProcessMonitor* inst = instance_.load(std::memory_order_acquire);
+    if (inst) {
+        inst->HandleProcessEvent(event_record);
     }
     return ERROR_SUCCESS;
 }

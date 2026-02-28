@@ -76,16 +76,34 @@ target_link_libraries(cortex_engine PUBLIC
 add_library(cortex_response STATIC
     response/ContainmentManager.cpp
     response/ContainmentManager.hpp
+    response/IncidentManager.cpp
+    response/IncidentManager.hpp
 )
 
 target_include_directories(cortex_response PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(cortex_response PUBLIC
     cortex_core
+    cortex_engine
+    nlohmann_json::nlohmann_json
+    OpenSSL::Crypto
     ole32
     oleaut32
 )
 
-# Main executable
+# Telemetry library
+add_library(cortex_telemetry STATIC
+    telemetry/TelemetryExporter.cpp
+    telemetry/TelemetryExporter.hpp
+)
+
+target_include_directories(cortex_telemetry PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(cortex_telemetry PUBLIC
+    cortex_core
+    cortex_engine
+    nlohmann_json::nlohmann_json
+)
+
+# Main executable (console-based EDR engine)
 add_executable(CortexEDR
     main.cpp
 )
@@ -95,10 +113,105 @@ target_link_libraries(CortexEDR PRIVATE
     cortex_collectors
     cortex_engine
     cortex_response
+    cortex_telemetry
     yaml-cpp::yaml-cpp
     nlohmann_json::nlohmann_json
     ntdll
 )
+
+# ═══════════════════════════════════════════════════════════════
+# Qt6 GUI Application (CortexEDR Dashboard)
+# ═══════════════════════════════════════════════════════════════
+option(BUILD_GUI "Build the Qt6 GUI application" ON)
+
+if(BUILD_GUI)
+    # Tell CMake where Qt6 is installed
+    list(APPEND CMAKE_PREFIX_PATH "C:/Qt/6.10.2/msvc2022_64")
+
+    find_package(Qt6 COMPONENTS Core Gui Widgets QUIET)
+    if(Qt6_FOUND)
+        message(STATUS "Qt6 found at: ${Qt6_DIR}")
+
+        # Enable Qt auto-generation tools (required for Q_OBJECT, signals/slots, .qrc)
+        set(CMAKE_AUTOMOC ON)
+        set(CMAKE_AUTORCC ON)
+        set(CMAKE_AUTOUIC ON)
+
+        # GUI library (UI panels + bridge to EDR backend)
+        add_library(cortex_gui STATIC
+            ui/EDRBridge.cpp
+            ui/EDRBridge.hpp
+            ui/MainWindow.cpp
+            ui/MainWindow.hpp
+            ui/DashboardPanel.cpp
+            ui/DashboardPanel.hpp
+            ui/QuickScanPanel.cpp
+            ui/QuickScanPanel.hpp
+            ui/FullScanPanel.cpp
+            ui/FullScanPanel.hpp
+            ui/RealTimeProtectionPanel.cpp
+            ui/RealTimeProtectionPanel.hpp
+            ui/QuarantinePanel.cpp
+            ui/QuarantinePanel.hpp
+            ui/LogsPanel.cpp
+            ui/LogsPanel.hpp
+            ui/SettingsPanel.cpp
+            ui/SettingsPanel.hpp
+            ui/AboutPanel.cpp
+            ui/AboutPanel.hpp
+        )
+
+        target_include_directories(cortex_gui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+        target_link_libraries(cortex_gui PUBLIC
+            cortex_core
+            cortex_collectors
+            cortex_engine
+            cortex_response
+            cortex_telemetry
+            Qt6::Core
+            Qt6::Gui
+            Qt6::Widgets
+        )
+
+        # GUI executable (WIN32 = no black console window behind the GUI)
+        add_executable(CortexEDR_GUI WIN32
+            main_gui.cpp
+        )
+
+        target_link_libraries(CortexEDR_GUI PRIVATE
+            cortex_gui
+            cortex_core
+            cortex_collectors
+            cortex_engine
+            cortex_response
+            cortex_telemetry
+            yaml-cpp::yaml-cpp
+            nlohmann_json::nlohmann_json
+            ntdll
+            iphlpapi
+            ws2_32
+            advapi32
+            Qt6::Core
+            Qt6::Gui
+            Qt6::Widgets
+        )
+
+        # Auto-deploy all required Qt6 DLLs next to the exe after each build
+        add_custom_command(TARGET CortexEDR_GUI POST_BUILD
+            COMMAND "C:/Qt/6.10.2/msvc2022_64/bin/windeployqt6.exe"
+                    --no-translations
+                    --no-system-d3d-compiler
+                    $<TARGET_FILE:CortexEDR_GUI>
+            COMMENT "Deploying Qt6 runtime DLLs..."
+        )
+
+        install(TARGETS CortexEDR_GUI RUNTIME DESTINATION bin)
+
+        message(STATUS "Qt6 GUI target: CortexEDR_GUI enabled")
+    else()
+        message(WARNING "Qt6 not found. GUI target disabled. Verify Qt6 is installed at C:/Qt/6.10.2/msvc2022_64")
+    endif()
+endif()
 
 # Tests
 enable_testing()
@@ -106,11 +219,13 @@ add_executable(cortex_tests
     tests/test_eventbus.cpp
     tests/test_threadpool.cpp
     tests/test_riskscorer.cpp
+    tests/test_incidentmanager.cpp
 )
 
 target_link_libraries(cortex_tests PRIVATE
     cortex_core
     cortex_engine
+    cortex_response
     GTest::gtest
     GTest::gtest_main
 )

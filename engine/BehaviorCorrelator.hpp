@@ -6,7 +6,7 @@
 #include <vector>
 #include <deque>
 #include <unordered_map>
-#include <mutex>
+#include <shared_mutex>
 #include <atomic>
 
 namespace cortex {
@@ -64,7 +64,7 @@ private:
     std::vector<BehaviorPattern> patterns_;
     RiskScorer* risk_scorer_{nullptr};
 
-    mutable std::mutex mutex_;
+    mutable std::shared_mutex mutex_;
     std::atomic<bool> running_{false};
     std::vector<SubscriptionId> subscription_ids_;
 

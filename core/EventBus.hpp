@@ -7,6 +7,9 @@
 #include <unordered_map>
 #include <vector>
 
+// Forward declare ThreadPool to avoid circular includes
+namespace cortex { class ThreadPool; }
+
 namespace cortex {
 
 enum class EventType {
@@ -52,6 +55,14 @@ public:
     void Publish(const Event& event);
     void PublishAsync(Event event);
 
+    // Initialize the internal thread pool for async publishing.
+    // Must be called once before any PublishAsync() calls.
+    void InitAsyncPool(size_t num_threads = 2);
+
+    // Drain all pending async tasks and shut down the pool.
+    // Call during application shutdown before EventBus destruction.
+    void ShutdownAsyncPool();
+
     size_t GetSubscriberCount(EventType type) const;
     void Clear();
 
@@ -61,6 +72,25 @@ private:
     mutable std::mutex mutex_;
     std::unordered_map<EventType, std::vector<std::pair<SubscriptionId, EventHandler>>> subscribers_;
     SubscriptionId next_id_ = 1;
+
+    std::unique_ptr<ThreadPool> async_pool_;
 };
+
+inline std::string EventTypeToString(EventType type) {
+    switch (type) {
+        case EventType::PROCESS_CREATE:          return "PROCESS_CREATE";
+        case EventType::PROCESS_TERMINATE:       return "PROCESS_TERMINATE";
+        case EventType::FILE_CREATE:             return "FILE_CREATE";
+        case EventType::FILE_MODIFY:             return "FILE_MODIFY";
+        case EventType::FILE_DELETE:             return "FILE_DELETE";
+        case EventType::NETWORK_CONNECT:         return "NETWORK_CONNECT";
+        case EventType::NETWORK_DISCONNECT:      return "NETWORK_DISCONNECT";
+        case EventType::REGISTRY_WRITE:          return "REGISTRY_WRITE";
+        case EventType::RISK_THRESHOLD_EXCEEDED: return "RISK_THRESHOLD_EXCEEDED";
+        case EventType::INCIDENT_STATE_CHANGE:   return "INCIDENT_STATE_CHANGE";
+        case EventType::CONTAINMENT_ACTION:      return "CONTAINMENT_ACTION";
+        default:                                 return "UNKNOWN";
+    }
+}
 
 } // namespace cortex

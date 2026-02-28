@@ -12,7 +12,10 @@
 #include "engine/RuleEngine.hpp"
 #include "engine/BehaviorCorrelator.hpp"
 #include "response/ContainmentManager.hpp"
+#include "response/IncidentManager.hpp"
+#include "telemetry/TelemetryExporter.hpp"
 
+#include <yaml-cpp/yaml.h>
 #include <iostream>
 #include <csignal>
 #include <atomic>
@@ -36,6 +39,9 @@ public:
 
     bool Initialize() {
         LOG_INFO("Initializing CortexEDR...");
+
+        // Initialize the async thread pool for EventBus (2 worker threads)
+        EventBus::Instance().InitAsyncPool(2);
 
         event_subscriber_id_ = EventBus::Instance().Subscribe(
             EventType::PROCESS_CREATE,
@@ -96,6 +102,39 @@ public:
         );
 
         LOG_INFO("Phase 2 components initialized");
+
+        // Initialize Phase 3 components
+        LOG_INFO("Initializing Phase 3 components...");
+
+        // IncidentManager
+        incident_manager_ = std::make_unique<IncidentManager>();
+        incident_manager_->Initialize(risk_scorer_.get(), "incidents");
+
+        // TelemetryExporter - load config from config.yaml
+        bool telemetry_enabled = true;
+        std::string telemetry_export_path = "telemetry/events.ndjson";
+        bool telemetry_named_pipe = false;
+        std::string telemetry_pipe_name = "\\\\.\\pipe\\CortexEDR";
+
+        try {
+            YAML::Node config = YAML::LoadFile("config/config.yaml");
+            if (config["telemetry"]) {
+                auto telem = config["telemetry"];
+                if (telem["enabled"])           telemetry_enabled = telem["enabled"].as<bool>();
+                if (telem["export_path"])        telemetry_export_path = telem["export_path"].as<std::string>();
+                if (telem["enable_named_pipe"])   telemetry_named_pipe = telem["enable_named_pipe"].as<bool>();
+                if (telem["named_pipe_name"])     telemetry_pipe_name = telem["named_pipe_name"].as<std::string>();
+            }
+        } catch (const std::exception& ex) {
+            LOG_WARN("Failed to load telemetry config, using defaults: {}", ex.what());
+        }
+
+        telemetry_exporter_ = std::make_unique<TelemetryExporter>();
+        telemetry_exporter_->Initialize(risk_scorer_.get(), telemetry_enabled,
+                                         telemetry_export_path, telemetry_named_pipe,
+                                         telemetry_pipe_name);
+
+        LOG_INFO("Phase 3 components initialized");
         return true;
     }
 
@@ -148,6 +187,19 @@ public:
         }
 
         LOG_INFO("Phase 2 components started");
+
+        // Start Phase 3 components
+        LOG_INFO("Starting Phase 3 components...");
+
+        if (incident_manager_) {
+            incident_manager_->Start();
+        }
+
+        if (telemetry_exporter_) {
+            telemetry_exporter_->Start();
+        }
+
+        LOG_INFO("Phase 3 components started");
         return true;
     }
 
@@ -172,7 +224,16 @@ public:
     void Stop() {
         LOG_INFO("Stopping CortexEDR...");
 
-        // Stop Phase 2 components first
+        // Stop Phase 3 components first
+        if (telemetry_exporter_) {
+            telemetry_exporter_->Stop();
+        }
+
+        if (incident_manager_) {
+            incident_manager_->Stop();
+        }
+
+        // Stop Phase 2 components
         if (containment_manager_) {
             containment_manager_->Stop();
         }
@@ -202,6 +263,9 @@ public:
             process_monitor_->Stop();
         }
 
+        // Shutdown the async publish pool last — after all components stop publishing
+        EventBus::Instance().ShutdownAsyncPool();
+
         LOG_INFO("All components stopped");
     }
 
@@ -228,6 +292,8 @@ private:
     std::unique_ptr<RuleEngine> rule_engine_;
     std::unique_ptr<BehaviorCorrelator> behavior_correlator_;
     std::unique_ptr<ContainmentManager> containment_manager_;
+    std::unique_ptr<IncidentManager> incident_manager_;
+    std::unique_ptr<TelemetryExporter> telemetry_exporter_;
 
     SubscriptionId event_subscriber_id_;
     std::atomic<size_t> event_count_{0};
@@ -241,7 +307,7 @@ int main() {
 
     LOG_INFO("==========================================================");
     LOG_INFO("  CortexEDR - Windows Endpoint Detection & Response");
-    LOG_INFO("  Phase 2: Detection Engine & Response");
+    LOG_INFO("  Phase 3: Incident Management & Telemetry");
     LOG_INFO("==========================================================");
 
     std::signal(SIGINT, cortex::SignalHandler);

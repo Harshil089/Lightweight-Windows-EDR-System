@@ -52,7 +52,7 @@ private:
     EVENT_TRACE_PROPERTIES* trace_properties_{nullptr};
 
     static constexpr wchar_t SESSION_NAME[] = KERNEL_LOGGER_NAMEW;
-    static ProcessMonitor* instance_;
+    static std::atomic<ProcessMonitor*> instance_;
 };
 
 } // namespace cortex

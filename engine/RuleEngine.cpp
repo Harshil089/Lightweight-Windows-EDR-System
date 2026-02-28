@@ -30,7 +30,7 @@ bool RuleEngine::Initialize(const std::string& rules_file_path, RiskScorer* risk
 }
 
 bool RuleEngine::LoadRules(const std::string& rules_file_path) {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::unique_lock<std::shared_mutex> lock(mutex_);
 
     try {
         YAML::Node config = YAML::LoadFile(rules_file_path);
@@ -148,12 +148,12 @@ void RuleEngine::Stop() {
 }
 
 size_t RuleEngine::GetRuleCount() const {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::shared_lock<std::shared_mutex> lock(mutex_);
     return rules_.size();
 }
 
 void RuleEngine::OnEvent(const Event& event) {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::shared_lock<std::shared_mutex> lock(mutex_);
 
     if (!risk_scorer_) {
         return;

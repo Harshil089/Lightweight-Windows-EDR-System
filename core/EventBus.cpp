@@ -1,4 +1,5 @@
 #include "core/EventBus.hpp"
+#include "core/ThreadPool.hpp"
 #include <chrono>
 #include <algorithm>
 
@@ -51,9 +52,27 @@ void EventBus::Publish(const Event& event) {
 }
 
 void EventBus::PublishAsync(Event event) {
-    std::thread([event = std::move(event)]() {
-        EventBus::Instance().Publish(event);
-    }).detach();
+    if (async_pool_) {
+        async_pool_->Enqueue([this, event = std::move(event)]() {
+            Publish(event);
+        });
+    } else {
+        // Fallback: publish synchronously if pool not initialized
+        Publish(event);
+    }
+}
+
+void EventBus::InitAsyncPool(size_t num_threads) {
+    if (!async_pool_) {
+        async_pool_ = std::make_unique<ThreadPool>(num_threads);
+    }
+}
+
+void EventBus::ShutdownAsyncPool() {
+    if (async_pool_) {
+        async_pool_->Shutdown();
+        async_pool_.reset();
+    }
 }
 
 size_t EventBus::GetSubscriberCount(EventType type) const {

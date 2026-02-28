@@ -8,6 +8,8 @@ RiskScorer::RiskScorer() {
 }
 
 void RiskScorer::ProcessEvent(const Event& event) {
+    std::unique_lock<std::shared_mutex> lock(mutex_);
+
     uint32_t pid = event.pid;
 
     switch (event.type) {
@@ -87,7 +89,7 @@ void RiskScorer::ProcessEvent(const Event& event) {
 }
 
 RiskScore RiskScorer::GetProcessRiskScore(uint32_t pid) const {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::shared_lock<std::shared_mutex> lock(mutex_);
     auto it = process_scores_.find(pid);
     if (it != process_scores_.end()) {
         return it->second;
@@ -96,11 +98,12 @@ RiskScore RiskScorer::GetProcessRiskScore(uint32_t pid) const {
 }
 
 void RiskScorer::ClearProcessScore(uint32_t pid) {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::unique_lock<std::shared_mutex> lock(mutex_);
     process_scores_.erase(pid);
 }
 
 void RiskScorer::SetThresholds(uint32_t low, uint32_t medium, uint32_t high, uint32_t critical) {
+    std::unique_lock<std::shared_mutex> lock(mutex_);
     threshold_low_ = low;
     threshold_medium_ = medium;
     threshold_high_ = high;
@@ -116,8 +119,7 @@ RiskLevel RiskScorer::CalculateLevel(uint32_t score) const {
 }
 
 void RiskScorer::AddRisk(uint32_t pid, const std::string& reason, uint32_t points) {
-    std::lock_guard<std::mutex> lock(mutex_);
-
+    // Note: caller (ProcessEvent) already holds mutex_ — no lock here.
     auto& risk = process_scores_[pid];
     risk.contributing_factors[reason] += points;
 

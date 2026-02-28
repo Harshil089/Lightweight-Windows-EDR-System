@@ -50,15 +50,12 @@ void FileMonitor::Stop() {
     LOG_INFO("Stopping FileMonitor");
     stop_requested_ = true;
 
-    for (auto& context : contexts_) {
-        if (context->dir_handle != INVALID_HANDLE_VALUE) {
-            CancelIo(context->dir_handle);
-            CloseHandle(context->dir_handle);
-            context->dir_handle = INVALID_HANDLE_VALUE;
-        }
-        if (context->overlapped.hEvent) {
-            CloseHandle(context->overlapped.hEvent);
-            context->overlapped.hEvent = nullptr;
+    {
+        std::lock_guard<std::mutex> lock(contexts_mutex_);
+        for (auto& context : contexts_) {
+            if (context->dir_handle != INVALID_HANDLE_VALUE) {
+                CancelIo(context->dir_handle);
+            }
         }
     }
 
@@ -68,6 +65,7 @@ void FileMonitor::Stop() {
         }
     }
 
+    // Threads have exited — safe to clean up without lock
     contexts_.clear();
     monitor_threads_.clear();
     running_ = false;
@@ -105,24 +103,31 @@ void FileMonitor::MonitorDirectory(const std::wstring& path) {
         return;
     }
 
+    // Register context so Stop() can CancelIo on it
+    WatchContext* ctx_ptr = context.get();
+    {
+        std::lock_guard<std::mutex> lock(contexts_mutex_);
+        contexts_.push_back(std::move(context));
+    }
+
     DWORD notify_filter = FILE_NOTIFY_CHANGE_FILE_NAME |
                           FILE_NOTIFY_CHANGE_LAST_WRITE |
                           FILE_NOTIFY_CHANGE_SECURITY |
                           FILE_NOTIFY_CHANGE_CREATION;
 
     while (!stop_requested_) {
-        ZeroMemory(context->buffer, sizeof(context->buffer));
-        ZeroMemory(&context->overlapped, sizeof(OVERLAPPED));
-        context->overlapped.hEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+        ZeroMemory(ctx_ptr->buffer, sizeof(ctx_ptr->buffer));
+        ZeroMemory(&ctx_ptr->overlapped, sizeof(OVERLAPPED));
+        ctx_ptr->overlapped.hEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
 
         BOOL result = ReadDirectoryChangesW(
-            context->dir_handle,
-            context->buffer,
-            sizeof(context->buffer),
+            ctx_ptr->dir_handle,
+            ctx_ptr->buffer,
+            sizeof(ctx_ptr->buffer),
             TRUE,
             notify_filter,
             nullptr,
-            &context->overlapped,
+            &ctx_ptr->overlapped,
             FileChangeCallback
         );
 
@@ -135,14 +140,17 @@ void FileMonitor::MonitorDirectory(const std::wstring& path) {
         }
 
         DWORD bytes_transferred = 0;
-        if (GetOverlappedResult(context->dir_handle, &context->overlapped, &bytes_transferred, TRUE)) {
-            ProcessFileChange(context.get(), bytes_transferred);
+        if (GetOverlappedResult(ctx_ptr->dir_handle, &ctx_ptr->overlapped, &bytes_transferred, TRUE)) {
+            ProcessFileChange(ctx_ptr, bytes_transferred);
         }
 
-        CloseHandle(context->overlapped.hEvent);
+        CloseHandle(ctx_ptr->overlapped.hEvent);
+        ctx_ptr->overlapped.hEvent = nullptr;
     }
 
+    // Clean up handles owned by this thread
     CloseHandle(dir_handle);
+    ctx_ptr->dir_handle = INVALID_HANDLE_VALUE;
 }
 
 void CALLBACK FileMonitor::FileChangeCallback(DWORD error_code, DWORD bytes_transferred, LPOVERLAPPED overlapped) {
